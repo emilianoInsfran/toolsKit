@@ -1,0 +1,46 @@
+<!--
+  Generated template for the ResultadosPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>resultados</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div class="box-search">
+    <input type="text" [(ngModel)]="pedidoHerramienta" >
+    <div class="search" (click)="buscarHerramientas()"></div>
+  </div>
+
+  <div class="filtros">
+      <ion-row >
+          <ion-col col-6>
+           <div class="btn-ordenar linea"> <ion-icon ios="ios-repeat" md="md-repeat"></ion-icon>Ordenar</div> 
+          </ion-col>
+          <ion-col col-6 >
+           <div class="btn-ordenar">  <ion-icon ios="ios-options" md="md-options"></ion-icon> Filtrar</div> 
+          </ion-col>
+    </ion-row>
+  </div>
+
+  <ion-grid class="informacion-busqueda">
+      <ion-row *ngFor="let item of herramientas" class="contenedor-herramientas">
+            <ion-col col-4>
+                <div class="img" [ngStyle]="{'background-image': 'url(' + item.urlImagen + ')'}"> </div>
+              </ion-col>
+              <ion-col col-8 class="informacion">
+                <p class="nombre">{{item.nombre}}</p>
+                <p>Ubicación: {{item.ubicacion}}</p>
+                <p><span>50$</span> por dia</p>
+              </ion-col>
+      </ion-row>
+    </ion-grid>
+
+
+
+
+</ion-content>
