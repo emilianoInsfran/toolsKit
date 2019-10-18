@@ -55,13 +55,33 @@ export class ResultadosPage {
       },
       { 
         nombre:'kit Herramientas',
-        precio:'50',
+        precio:'150',
         moneda:'$',
         disponible:true,
         urlImagen:'../../assets/imgs/martillos.png',
         descripción:'aca va una descripción',
         propietario:'Nombre Apellido',
-        ubicacion:'Ezeiza'
+        ubicacion:'Monte Grande'
+      },
+      { 
+        nombre:'kit Herramientas',
+        precio:'150',
+        moneda:'$',
+        disponible:true,
+        urlImagen:'../../assets/imgs/martillos.png',
+        descripción:'aca va una descripción',
+        propietario:'Nombre Apellido',
+        ubicacion:'Monte Grande'
+      },
+      { 
+        nombre:'kit Herramientas',
+        precio:'150',
+        moneda:'$',
+        disponible:true,
+        urlImagen:'../../assets/imgs/martillos.png',
+        descripción:'aca va una descripción',
+        propietario:'Nombre Apellido',
+        ubicacion:'Monte Grande'
       }
     ]
   }
