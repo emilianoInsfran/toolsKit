@@ -28,14 +28,14 @@
   </div>
 
   <ion-grid class="informacion-busqueda">
-      <ion-row *ngFor="let item of herramientas" class="contenedor-herramientas">
+      <ion-row *ngFor="let item of herramientas | myfilter : myFilterPipe2" class="contenedor-herramientas">
             <ion-col col-4>
                 <div class="img" [ngStyle]="{'background-image': 'url(' + item.urlImagen + ')'}"> </div>
               </ion-col>
               <ion-col col-8 class="informacion">
                 <p class="nombre">{{item.nombre}}</p>
                 <p>Ubicación: {{item.ubicacion}}</p>
-                <p><span>50$</span> por dia</p>
+                <p><span>{{item.number}}</span> por dia</p>
               </ion-col>
       </ion-row>
     </ion-grid>
@@ -48,12 +48,17 @@
       </ul>
     </div>
     <div class="filtrar filtro" [hidden]="fil">
-        <h3>Ordenar por</h3>
+        <h3>Ordenar por zona</h3>
 
       <ul>
-        <li (click)="hidePopUp()">
-          Zona
+        <li (click)="hidePopUp()" >
+          Buscar
         </li>
+<!--[(ngModel)]="myFilterPipe2"-->
+        <select name="" id=""  [(ngModel)]="myFilterPipe2">
+          <option  *ngFor="let ubicacion of ubicacionHerramienta" [value]='ubicacion.nombre' >{{ubicacion.nombre}}</option>
+        </select>
+
       </ul>
     </div>
 

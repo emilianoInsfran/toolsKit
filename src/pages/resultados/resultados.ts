@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Pipe, PipeTransform } from '@angular/core';
+
+import { MyFilterPipe } from '../../app/order.pipe';
+
 
 /**
  * Generated class for the ResultadosPage page.
@@ -7,25 +11,46 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-
 @IonicPage()
 @Component({
   selector: 'page-resultados',
   templateUrl: 'resultados.html',
 })
+
+@Pipe({
+  name: 'orderBy'
+})
+
 export class ResultadosPage {
   herramientas = []; 
   pedidoHerramienta:string;
   ord:boolean =true;
   fil:boolean = true;
+  myFilterPipe2: string;
+  order: string;
+  ubicacionHerramienta=[];
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     this.obtenerHerramientas();
+    this.getUbicacion();
+
     console.log('ionViewDidLoad ResultadosPage');
   } 
+
+  getUbicacion(){
+    this.ubicacionHerramienta = [
+      {
+        nombre:'Ezeiza'
+      },{
+        nombre:'Monte Grande'
+      },{
+        nombre:'Avellaneda'
+      }
+    ]
+  }
 
   mostrarFiltro(id) {
     console.log(id);
@@ -38,6 +63,8 @@ export class ResultadosPage {
   }
 
   hidePopUp(){
+    console.log("-----------",this.myFilterPipe2);
+    
       this.fil = true;
       this.ord = true;
   }
@@ -51,8 +78,9 @@ export class ResultadosPage {
     this.herramientas =
     [
       {
-        nombre:'kit Herramientas',
-        precio:'50',
+        id:'1',
+        nombre:'Mezcladora',
+        number:'70',
         moneda:'$',
         disponible:true,
         urlImagen:'../../assets/imgs/mezcladora.png',
@@ -61,8 +89,9 @@ export class ResultadosPage {
         ubicacion:'Ezeiza'
       },
       {
-        nombre:'kit Herramientas',
-        precio:'50',
+        id:'2',
+        nombre:'Taladro',
+        number:'60',
         moneda:'$',
         disponible:true,
         urlImagen:'../../assets/imgs/taladro.png',
@@ -71,8 +100,9 @@ export class ResultadosPage {
         ubicacion:'Ezeiza' 
       },
       { 
+        id:'1',
         nombre:'kit Herramientas',
-        precio:'150',
+        number:'150',
         moneda:'$',
         disponible:true,
         urlImagen:'../../assets/imgs/martillos.png',
@@ -81,8 +111,9 @@ export class ResultadosPage {
         ubicacion:'Monte Grande'
       },
       { 
+        id:'1',
         nombre:'kit Herramientas',
-        precio:'150',
+        number:'150',
         moneda:'$',
         disponible:true,
         urlImagen:'../../assets/imgs/martillos.png',
@@ -91,16 +122,19 @@ export class ResultadosPage {
         ubicacion:'Monte Grande'
       },
       { 
+        id:'1',
         nombre:'kit Herramientas',
-        precio:'150',
+        number:'150',
         moneda:'$',
         disponible:true,
         urlImagen:'../../assets/imgs/martillos.png',
         descripción:'aca va una descripción',
         propietario:'Nombre Apellido',
-        ubicacion:'Monte Grande'
+        ubicacion:'Avellaneda'
       }
     ]
+
+    this.order = 'number'
   }
 
 

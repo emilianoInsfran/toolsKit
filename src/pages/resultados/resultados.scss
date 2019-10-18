@@ -97,5 +97,13 @@ page-resultados {
                 list-style-type: none;
             }
         }
+
+        select {
+            height: 40px;
+            width: 100%;
+            border-radius: 20px;
+            text-align: center;
+            padding-left: 20px;
+        }
     }
 }

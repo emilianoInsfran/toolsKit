@@ -8,16 +8,20 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { ResultadosPage } from '../pages/resultados/resultados';
+import { OrderModule } from 'ngx-order-pipe';
+import { MyFilterPipe } from './order.pipe';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     ResultadosPage,
-    LoginPage
+    LoginPage,
+    MyFilterPipe
   ],
   imports: [
     BrowserModule,
+    OrderModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -25,12 +29,13 @@ import { ResultadosPage } from '../pages/resultados/resultados';
     MyApp,
     HomePage,
     ResultadosPage,
-    LoginPage
+    LoginPage,
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
-  ]
+  ],
+  exports: [MyFilterPipe]
 })
 export class AppModule {}
