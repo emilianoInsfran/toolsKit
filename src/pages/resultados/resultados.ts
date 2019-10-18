@@ -16,6 +16,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 export class ResultadosPage {
   herramientas = []; 
   pedidoHerramienta:string;
+  ord:boolean =true;
+  fil:boolean = true;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
@@ -24,6 +26,21 @@ export class ResultadosPage {
     this.obtenerHerramientas();
     console.log('ionViewDidLoad ResultadosPage');
   } 
+
+  mostrarFiltro(id) {
+    console.log(id);
+    if(id=="ordenar"){
+      this.ord = false;
+    }
+    else if (id=='filtrar') {
+      this.fil = false;
+    }
+  }
+
+  hidePopUp(){
+      this.fil = true;
+      this.ord = true;
+  }
 
   buscarHerramientas() {
     console.log("herramienta",this.pedidoHerramienta);
