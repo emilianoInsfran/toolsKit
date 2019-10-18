@@ -51,8 +51,8 @@ export class ResultadosPage {
     this.herramientas =
     [
       {
-        nombre:'kit Herramientas',
-        precio:'50',
+        nombre:'Mezcladora',
+        precio:'70',
         moneda:'$',
         disponible:true,
         urlImagen:'../../assets/imgs/mezcladora.png',
@@ -61,8 +61,8 @@ export class ResultadosPage {
         ubicacion:'Ezeiza'
       },
       {
-        nombre:'kit Herramientas',
-        precio:'50',
+        nombre:'Taladro',
+        precio:'60',
         moneda:'$',
         disponible:true,
         urlImagen:'../../assets/imgs/taladro.png',
@@ -82,7 +82,7 @@ export class ResultadosPage {
       },
       { 
         nombre:'kit Herramientas',
-        precio:'150',
+        precio:'50',
         moneda:'$',
         disponible:true,
         urlImagen:'../../assets/imgs/martillos.png',
