@@ -95,14 +95,6 @@ export class LoginPage {
         loading.dismiss();
       })
     }
-    
-    
- 
-
   
   }
-
-
-  
-
 }
