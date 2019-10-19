@@ -31,14 +31,16 @@ export class ResultadosPage {
   order: string;
   ubicacionHerramienta:any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
-  private http: HttpClient) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private http: HttpClient) {
   }
 
   ionViewDidLoad() {
     //this.obtenerHerramientas();
     this.getUbicacion();
-    this.showConfig();
+    this.showConfig('');// cuando entro por primera vez el usuario y no le paso ningun parametro (null o undefine o '') me tiene que traer las herramientas de mejor puntuación (ej: martillo-taladro-mezclarora-etc)
 
     console.log('ionViewDidLoad ResultadosPage');
   } 
@@ -55,12 +57,12 @@ export class ResultadosPage {
     ]
   }
 
-  getConfig() {
+  getConfigHerramientas(obj) {
     return this.http.get('https://herramientas-backend.herokuapp.com/herramientas?page=&limit=');
   }
 
-  showConfig() {
-    this.getConfig()
+  showConfig(obj) {
+    this.getConfigHerramientas(obj)
       .subscribe(herramientas => {
                 console.log('data:',herramientas);
                 this.obtenerHerramientas(herramientas);
@@ -86,6 +88,11 @@ export class ResultadosPage {
 
   buscarHerramientas() {
     console.log("herramienta",this.pedidoHerramienta);
+    let obj = {
+      herramienta: this.pedidoHerramienta
+    }
+
+    //this.showConfig(obj)// le pasas ese parametro - leer linea 43 
   }
 
   //filtro seria por puntuación, precio, ubicacion
