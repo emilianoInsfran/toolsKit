@@ -11,6 +11,11 @@ import { ResultadosPage } from '../pages/resultados/resultados';
 import { OrderModule } from 'ngx-order-pipe';
 import { MyFilterPipe } from './order.pipe';
 
+import { GooglePlus } from '@ionic-native/google-plus';
+import { NativeStorage } from '@ionic-native/native-storage';
+
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -22,6 +27,7 @@ import { MyFilterPipe } from './order.pipe';
   imports: [
     BrowserModule,
     OrderModule,
+    HttpClientModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -34,6 +40,8 @@ import { MyFilterPipe } from './order.pipe';
   providers: [
     StatusBar,
     SplashScreen,
+    GooglePlus,
+    NativeStorage,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ],
   exports: [MyFilterPipe]

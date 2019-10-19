@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Pipe, PipeTransform } from '@angular/core';
 
 import { MyFilterPipe } from '../../app/order.pipe';
+import { HttpClient } from '@angular/common/http';
 
 
 /**
@@ -28,14 +29,16 @@ export class ResultadosPage {
   fil:boolean = true;
   myFilterPipe2: string;
   order: string;
-  ubicacionHerramienta=[];
+  ubicacionHerramienta:any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+  private http: HttpClient) {
   }
 
   ionViewDidLoad() {
-    this.obtenerHerramientas();
+    //this.obtenerHerramientas();
     this.getUbicacion();
+    this.showConfig();
 
     console.log('ionViewDidLoad ResultadosPage');
   } 
@@ -50,6 +53,18 @@ export class ResultadosPage {
         nombre:'Avellaneda'
       }
     ]
+  }
+
+  getConfig() {
+    return this.http.get('https://herramientas-backend.herokuapp.com/herramientas?page=&limit=');
+  }
+
+  showConfig() {
+    this.getConfig()
+      .subscribe(herramientas => {
+                console.log('data:',herramientas);
+                this.obtenerHerramientas(herramientas);
+      });
   }
 
   mostrarFiltro(id) {
@@ -74,8 +89,10 @@ export class ResultadosPage {
   }
 
   //filtro seria por puntuación, precio, ubicacion
-  obtenerHerramientas() {
-    this.herramientas =
+  obtenerHerramientas(array) {
+    this.herramientas = array.rows;
+
+  /*  this.herramientas =
     [
       {
         id:'1',
@@ -132,7 +149,7 @@ export class ResultadosPage {
         propietario:'Nombre Apellido',
         ubicacion:'Avellaneda'
       }
-    ]
+    ]*/
 
     this.order = 'number'
   }

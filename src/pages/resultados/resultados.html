@@ -28,14 +28,14 @@
   </div>
 
   <ion-grid class="informacion-busqueda">
-      <ion-row *ngFor="let item of herramientas | myfilter : myFilterPipe2" class="contenedor-herramientas">
+      <ion-row *ngFor="let item of herramientas | myfilter : myFilterPipe2" [hidden]='!item.disponible' class="contenedor-herramientas">
             <ion-col col-4>
-                <div class="img" [ngStyle]="{'background-image': 'url(' + item.urlImagen + ')'}"> </div>
+                <div class="img" [ngStyle]="{'background-image': 'url(' + item.imagenes[0] + ')'}"> </div>
               </ion-col>
               <ion-col col-8 class="informacion">
                 <p class="nombre">{{item.nombre}}</p>
                 <p>Ubicación: {{item.ubicacion}}</p>
-                <p><span>{{item.number}}</span> por dia</p>
+                <p><span>{{item.precio}}</span> por dia</p>
               </ion-col>
       </ion-row>
     </ion-grid>
