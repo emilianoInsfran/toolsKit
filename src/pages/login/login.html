@@ -1,7 +1,15 @@
-<ion-content >
+<ion-header>
+  <ion-navbar hideBackButton>
+    <button ion-button menuToggle >
+      <ion-icon name="menu"></ion-icon>
+    </button>
+  </ion-navbar>
+</ion-header>
 
-  <h1>Login</h1>
+<ion-content padding>
 
-  <button (click)='doGoogleLogin()'><ion-icon name="logo-google"></ion-icon> Ingresar con Google</button>
+  
+
+  <button ngClass="login" (click)='doGoogleLogin()'><ion-icon name="logo-google"></ion-icon> Ingresar con Google</button>
 
 </ion-content>

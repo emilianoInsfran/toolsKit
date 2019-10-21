@@ -7,6 +7,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
+import { UserPage } from '../pages/user/user';
 import { ResultadosPage } from '../pages/resultados/resultados';
 import { OrderModule } from 'ngx-order-pipe';
 import { MyFilterPipe } from './order.pipe';
@@ -22,7 +23,8 @@ import { HttpClientModule } from '@angular/common/http';
     HomePage,
     ResultadosPage,
     LoginPage,
-    MyFilterPipe
+    MyFilterPipe,
+    UserPage
   ],
   imports: [
     BrowserModule,
@@ -36,6 +38,7 @@ import { HttpClientModule } from '@angular/common/http';
     HomePage,
     ResultadosPage,
     LoginPage,
+    UserPage
   ],
   providers: [
     StatusBar,
