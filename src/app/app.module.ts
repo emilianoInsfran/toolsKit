@@ -13,9 +13,16 @@ import { OrderModule } from 'ngx-order-pipe';
 import { MyFilterPipe } from './order.pipe';
 
 import { GooglePlus } from '@ionic-native/google-plus';
-import { NativeStorage } from '@ionic-native/native-storage';
-
+//import { NativeStorage } from '@ionic-native/native-storage';
+import { IonicStorageModule } from '@ionic/storage';
 import { HttpClientModule } from '@angular/common/http';
+
+import { Config } from '../config';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuth } from '@angular/fire/auth';
+
+import { AuthenticatorService } from '../providers/authenticatorService';
+
 
 @NgModule({
   declarations: [
@@ -30,7 +37,9 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     OrderModule,
     HttpClientModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(Config.FIREBASE_CONFIG),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -44,7 +53,8 @@ import { HttpClientModule } from '@angular/common/http';
     StatusBar,
     SplashScreen,
     GooglePlus,
-    NativeStorage,
+    AngularFireAuth,
+    AuthenticatorService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ],
   exports: [MyFilterPipe]

@@ -1,7 +1,7 @@
 {
   "name": "toolsKit",
   "version": "0.0.1",
-  "author": "Ionic Framework",
+  "author": "Ionic Framework typescript: ~2.6.2",
   "homepage": "http://ionicframework.com/",
   "private": true,
   "scripts": {
@@ -16,26 +16,29 @@
     "@angular/compiler": "5.2.11",
     "@angular/compiler-cli": "5.2.11",
     "@angular/core": "5.2.11",
+    "@angular/fire": "^5.2.1",
     "@angular/forms": "5.2.11",
     "@angular/http": "5.2.11",
     "@angular/platform-browser": "5.2.11",
     "@angular/platform-browser-dynamic": "5.2.11",
     "@ionic-native/core": "~4.20.0",
-    "@ionic-native/splash-screen": "~4.20.0",
-    "@ionic-native/status-bar": "~4.20.0",
     "@ionic-native/google-plus": "^3.8.1",
     "@ionic-native/native-storage": "^3.8.1",
-    "@ionic/storage": "2.2.0",
-    "@ionic/angular": "^4.7.1",
+    "@ionic-native/splash-screen": "~4.20.0",
+    "@ionic-native/status-bar": "~4.20.0",
+    "@ionic/angular": "4.1.0",
+    "@ionic/storage": "^2.2.0",
     "cordova-android": "7.0.0",
+    "cordova-browser": "6.0.0",
     "cordova-plugin-device": "^2.0.3",
+    "cordova-plugin-googleplus": "^5.1.1",
     "cordova-plugin-ionic-keyboard": "^2.2.0",
     "cordova-plugin-ionic-webview": "^4.1.2",
+    "cordova-plugin-nativestorage": "^2.2.2",
     "cordova-plugin-splashscreen": "^5.0.3",
     "cordova-plugin-statusbar": "^2.4.3",
     "cordova-plugin-whitelist": "^1.3.4",
-    "cordova-plugin-googleplus": "^5.1.1",
-    "cordova-plugin-nativestorage": "^2.2.2",
+    "firebase": "^6.2.3",
     "ionic": "^3.6.0",
     "ionic-angular": "3.9.5",
     "ionicons": "3.0.0",
@@ -60,14 +63,15 @@
       },
       "cordova-plugin-ionic-keyboard": {},
       "cordova-plugin-googleplus": {
-        "REVERSED_CLIENT_ID": "com.googleusercontent.apps.148772049317-tasr5m263tn61balm4ucnnooq54d1a23",
-        "WEB_APPLICATION_CLIENT_ID": "148772049317-tasr5m263tn61balm4ucnnooq54d1a23.apps.googleusercontent.com",
+        "REVERSED_CLIENT_ID": "com.googleusercontent.apps.648889677926-8dunls4e743csm8o8i1fbepr4d7fve40",
+        "WEB_APPLICATION_CLIENT_ID": "648889677926-8dunls4e743csm8o8i1fbepr4d7fve40.apps.googleusercontent.com",
         "PLAY_SERVICES_VERSION": "11.8.0"
       },
       "cordova-plugin-nativestorage": {}
     },
     "platforms": [
-      "android"
+      "android",
+      "browser"
     ]
   }
 }

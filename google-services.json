@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "648889677926",
+    "firebase_url": "https://toolskit-2789c.firebaseio.com",
+    "project_id": "toolskit-2789c",
+    "storage_bucket": "toolskit-2789c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:648889677926:android:458e7f78b7b6e225bb55a7",
+        "android_client_info": {
+          "package_name": "io.ionic.toolsKit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "648889677926-8dunls4e743csm8o8i1fbepr4d7fve40.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.ionic.toolsKit",
+            "certificate_hash": "0c2b6a4617350f04a33ae900a90dedefa64be338"
+          }
+        },
+        {
+          "client_id": "648889677926-5bqvt18lsep5epkha91sdi9tvq38e5go.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFkTaGk5yv3WQb0_aJtfVCUZpmoQCj9Xo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "648889677926-5bqvt18lsep5epkha91sdi9tvq38e5go.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
