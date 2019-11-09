@@ -58,7 +58,8 @@ export class ResultadosPage {
   }
 
   getConfigHerramientas(obj) {
-    return this.http.get('https://herramientas-backend.herokuapp.com/herramientas?page=&limit=');
+    console.log(obj);
+    return this.http.get(`https://herramientas-backend.herokuapp.com/herramientas?nombreLike=${obj.herramienta}`);
   }
 
   showConfig(obj) {
@@ -87,12 +88,11 @@ export class ResultadosPage {
   }
 
   buscarHerramientas() {
-    console.log("herramienta",this.pedidoHerramienta);
     let obj = {
       herramienta: this.pedidoHerramienta
     }
 
-    //this.showConfig(obj)// le pasas ese parametro - leer linea 43 
+    this.showConfig(obj)// le pasas ese parametro - leer linea 43 
   }
 
   //filtro seria por puntuación, precio, ubicacion
