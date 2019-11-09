@@ -5,6 +5,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { MyFilterPipe } from '../../app/order.pipe';
 import { HttpClient } from '@angular/common/http';
 
+import { Config } from '../../config';
+
 
 /**
  * Generated class for the ResultadosPage page.
@@ -58,8 +60,7 @@ export class ResultadosPage {
   }
 
   getConfigHerramientas(obj) {
-    console.log(obj);
-    return this.http.get(`https://herramientas-backend.herokuapp.com/herramientas?nombreLike=${obj.herramienta}`);
+    return this.http.get(Config.heroku_backend_url+'herramientas?page=&limit=');
   }
 
   showConfig(obj) {

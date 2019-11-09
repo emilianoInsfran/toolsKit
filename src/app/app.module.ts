@@ -7,14 +7,22 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
+import { UserPage } from '../pages/user/user';
 import { ResultadosPage } from '../pages/resultados/resultados';
 import { OrderModule } from 'ngx-order-pipe';
 import { MyFilterPipe } from './order.pipe';
 
 import { GooglePlus } from '@ionic-native/google-plus';
-import { NativeStorage } from '@ionic-native/native-storage';
-
+//import { NativeStorage } from '@ionic-native/native-storage';
+import { IonicStorageModule } from '@ionic/storage';
 import { HttpClientModule } from '@angular/common/http';
+
+import { Config } from '../config';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuth } from '@angular/fire/auth';
+
+import { AuthenticatorService } from '../providers/authenticatorService';
+
 
 @NgModule({
   declarations: [
@@ -22,13 +30,16 @@ import { HttpClientModule } from '@angular/common/http';
     HomePage,
     ResultadosPage,
     LoginPage,
-    MyFilterPipe
+    MyFilterPipe,
+    UserPage
   ],
   imports: [
     BrowserModule,
     OrderModule,
     HttpClientModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(Config.FIREBASE_CONFIG),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -36,12 +47,14 @@ import { HttpClientModule } from '@angular/common/http';
     HomePage,
     ResultadosPage,
     LoginPage,
+    UserPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     GooglePlus,
-    NativeStorage,
+    AngularFireAuth,
+    AuthenticatorService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ],
   exports: [MyFilterPipe]
