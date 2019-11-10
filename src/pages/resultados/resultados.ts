@@ -6,7 +6,7 @@ import { MyFilterPipe } from '../../app/order.pipe';
 import { HttpClient } from '@angular/common/http';
 
 import { Config } from '../../config';
-
+import { UserPage } from '../user/user';
 
 /**
  * Generated class for the ResultadosPage page.
@@ -99,67 +99,12 @@ export class ResultadosPage {
   //filtro seria por puntuación, precio, ubicacion
   obtenerHerramientas(array) {
     this.herramientas = array.rows;
-
-  /*  this.herramientas =
-    [
-      {
-        id:'1',
-        nombre:'Mezcladora',
-        number:'70',
-        moneda:'$',
-        disponible:true,
-        urlImagen:'../../assets/imgs/mezcladora.png',
-        descripción:'aca va una descripción',
-        propietario:'Nombre Apellido',
-        ubicacion:'Ezeiza'
-      },
-      {
-        id:'2',
-        nombre:'Taladro',
-        number:'60',
-        moneda:'$',
-        disponible:true,
-        urlImagen:'../../assets/imgs/taladro.png',
-        descripción:'aca va una descripción',
-        propietario:'Nombre Apellido',
-        ubicacion:'Ezeiza' 
-      },
-      { 
-        id:'1',
-        nombre:'kit Herramientas',
-        number:'150',
-        moneda:'$',
-        disponible:true,
-        urlImagen:'../../assets/imgs/martillos.png',
-        descripción:'aca va una descripción',
-        propietario:'Nombre Apellido',
-        ubicacion:'Monte Grande'
-      },
-      { 
-        id:'1',
-        nombre:'kit Herramientas',
-        number:'150',
-        moneda:'$',
-        disponible:true,
-        urlImagen:'../../assets/imgs/martillos.png',
-        descripción:'aca va una descripción',
-        propietario:'Nombre Apellido',
-        ubicacion:'Monte Grande'
-      },
-      { 
-        id:'1',
-        nombre:'kit Herramientas',
-        number:'150',
-        moneda:'$',
-        disponible:true,
-        urlImagen:'../../assets/imgs/martillos.png',
-        descripción:'aca va una descripción',
-        propietario:'Nombre Apellido',
-        ubicacion:'Avellaneda'
-      }
-    ]*/
-
     this.order = 'number'
+  }
+
+  gotoPerfil(data) {
+    console.log(data);
+    this.navCtrl.push(UserPage,{dataService: data});
   }
 
 

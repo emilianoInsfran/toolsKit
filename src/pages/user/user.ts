@@ -5,6 +5,8 @@ import { AuthenticatorService } from '../../providers/authenticatorService';
 import { Storage } from '@ionic/storage';
 
 import { ResultadosPage } from '../resultados/resultados';
+import { LoginPage } from '../login/login';
+
 
 @IonicPage()
 @Component({
@@ -16,34 +18,68 @@ export class UserPage {
   user: any;
   userReady: boolean = false;
 
+  allData:any;
+
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams, 
     private storage: Storage,
     public loadingCtrl: LoadingController,
     private authenticator: AuthenticatorService
-  ) { }
+  ) {
+
+    this.allData = this.navParams.get('dataService');
+    console.log('usuario seleccionado. ', this.allData);
+    this.getInfo();
+   }
 
   ionViewDidLoad() {
-    let loading = this.loadingCtrl.create({
-      content: 'Por favor espere'
-    });
-    loading.present();
-    this.storage.get('google_user')
-    .then(data => {
-      if(data){
-        this.user = {
-          name: data.name,
-          email: data.email,
-          picture: data.picture
-        };
-        this.userReady = true;
+
+
+  }
+
+  getInfo(){
+    console.log('otro usuario',this.allData);
+    if(this.allData != undefined){
+      console.log('otro usuario');
+      this.user = {
+        name:"otro usuario",
+        apellido:"apellido",
+        email:'miemail@gmail.com',
+        picture:['../../assets/imgs/user.jpg'],
+        ubicacion:'Ezeiza',
+        reputacion:'50%',
+        comentarios:"muy buena las herramiensta, estan en buen estado"
       }
-      loading.dismiss();
-    }, error =>{
-      console.log(error);
-      loading.dismiss();
-    });
+      this.userReady = true;
+
+    }else {
+      console.log('userapp');
+      let loading = this.loadingCtrl.create({
+        content: 'Por favor espere'
+      });
+      loading.present();
+      this.storage.get('google_user')
+      .then(data => {
+        if(data){
+          console.log("user",data);
+          this.user = {
+            name: data.nombre,
+            apellido:data.apellido,
+            email: data.email,
+            picture: data.picture,
+            ubicacion:'Ezeiza',
+            reputacion:'50%',
+            comentarios:"muy buena las herramiensta, estan en buen estado"
+          };
+          this.userReady = true;
+        }
+        loading.dismiss();
+      }, error =>{
+        console.log(error);
+        loading.dismiss();
+      });
+    }
   }
 
   doGoogleLogout(){
@@ -59,7 +95,7 @@ export class UserPage {
   }
 
   gotoPage() {
-    this.navCtrl.setRoot( ResultadosPage );
+    this.navCtrl.setRoot( LoginPage );
   }
 
 }

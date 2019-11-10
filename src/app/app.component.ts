@@ -3,6 +3,7 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
+import { AltaServicePage } from '../pages/alta-service/alta-service';
 
 import { LoginPage } from '../pages/login/login';
 import { ResultadosPage } from '../pages/resultados/resultados';
@@ -26,8 +27,9 @@ export class MyApp {
 
       this.pages = [
         { title: 'Home', component: ResultadosPage },
-        { title: 'Login', component: LoginPage },
-        { title: 'User', component: UserPage }
+        { title: 'User', component: UserPage },
+        { title: 'Publicar', component: AltaServicePage },
+        { title: 'Login', component: LoginPage }
       ];
     });
   }

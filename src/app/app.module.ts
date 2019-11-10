@@ -8,6 +8,8 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { UserPage } from '../pages/user/user';
+import { AltaServicePage } from '../pages/alta-service/alta-service';
+
 import { ResultadosPage } from '../pages/resultados/resultados';
 import { OrderModule } from 'ngx-order-pipe';
 import { MyFilterPipe } from './order.pipe';
@@ -31,7 +33,8 @@ import { AuthenticatorService } from '../providers/authenticatorService';
     ResultadosPage,
     LoginPage,
     MyFilterPipe,
-    UserPage
+    UserPage,
+    AltaServicePage
   ],
   imports: [
     BrowserModule,
@@ -47,7 +50,8 @@ import { AuthenticatorService } from '../providers/authenticatorService';
     HomePage,
     ResultadosPage,
     LoginPage,
-    UserPage
+    UserPage,
+    AltaServicePage
   ],
   providers: [
     StatusBar,

@@ -12,5 +12,30 @@ page-login {
         border-radius: 20px;
     }
 
+
+
+}
+
+.img-tel {
+    height: 80px;
+    width: 100%;
+    display: inline-block;
+    background-image: url(../../assets/imgs/call.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    /*  */
+    background-position: center;
+}
+
+a {
+    height: 80px;
+    width: 40%;
+    display: inline-block;
+    margin-top: 40px;
+}
+
+.comentarios {
+    padding: 5px;
+    border: 1px solid gray;
 }
 

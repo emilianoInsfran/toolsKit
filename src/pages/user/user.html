@@ -7,16 +7,28 @@
 </ion-header>
 
 <ion-content *ngIf='userReady'>
+  
   <ion-content>
   <ion-card>
     <img [src]="user.picture"/>
     <ion-card-content>
       <ion-card-title>
-        Welcome {{user.name}}!
+        Bienvenido {{user.name}}  {{user.apellido}}!
         </ion-card-title>
-      <p>
-        Your email is: {{user.email}}
-      </p>
+       <p>
+        Email: {{user.email}}
+       </p>
+       <p>
+          Ubicación: {{user.ubicacion}}
+        </p>
+        <p>
+          Reputación : {{user.reputacion}}
+        </p>
+        <p>Comentarios</p>
+        <div class="comentarios"><p> {{user.comentarios}}</p> </div>
+        <a href="tel:+34678567876"><div class="img-tel"></div></a>
+
+
     </ion-card-content>
   </ion-card>
   <ion-row>
