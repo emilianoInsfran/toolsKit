@@ -8,7 +8,36 @@
 </ion-header>
 
 <ion-content padding>
-    <div>
+    <ion-row class="contenedor-herramientas">
+        <ion-col col-8 class="informacion">
+            <p class="nombre">Nombre Proveedor</p>
+        </ion-col>
 
-    </div>
+        <ion-col col-8 class="informacion">
+            <p><span>Precio</span> por dia</p>
+        </ion-col>
+        <ion-col col-8 class="informacion">
+            <p> descripcion corta de la herramienta</p>
+        </ion-col>
+        <ion-col col-8 class="informacion">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </ion-col>
+
+    </ion-row>
+
+    <ion-card class="content_item">
+        <ion-item>
+            <div class="ec-stars-wrapper">
+                <a href="#" data-value="1" title="Votar con 1 estrellas">&#9733;</a>
+                <a href="#" data-value="2" title="Votar con 2 estrellas">&#9733;</a>
+                <a href="#" data-value="3" title="Votar con 3 estrellas">&#9733;</a>
+                <a href="#" data-value="4" title="Votar con 4 estrellas">&#9733;</a>
+                <a href="#" data-value="5" title="Votar con 5 estrellas">&#9733;</a>
+            </div>
+        </ion-item>
+
+    </ion-card>
+    <button ion-button block class="button">Guardar calificación</button>
+
+
 </ion-content>

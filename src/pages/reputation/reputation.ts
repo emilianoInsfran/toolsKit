@@ -4,6 +4,7 @@ import { Storage } from '@ionic/storage';
 import { HttpClient } from '@angular/common/http';
 import { AuthenticatorService } from '../../providers/authenticatorService';
 import { Config } from '../../config';
+import { AddQualifyPage } from '../addQualify/addQualify';
 
 
 @IonicPage()
@@ -22,6 +23,9 @@ export class ReputationPage {
 
   ionViewDidLoad() {}
 
-
+gotoAddQualify(data) {
+    console.log(data);
+    this.navCtrl.push(AddQualifyPage,{dataService: data});
+  }
 
  }
