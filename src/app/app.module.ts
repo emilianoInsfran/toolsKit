@@ -7,6 +7,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
+import { ReputationPage } from '../pages/reputation/reputation';
+import { AddQualifyPage } from '../pages/addQualify/addQualify';
 import { UserPage } from '../pages/user/user';
 import { AltaServicePage } from '../pages/alta-service/alta-service';
 
@@ -34,7 +36,9 @@ import { AuthenticatorService } from '../providers/authenticatorService';
     LoginPage,
     MyFilterPipe,
     UserPage,
-    AltaServicePage
+    AltaServicePage,
+    ReputationPage,
+    AddQualifyPage
   ],
   imports: [
     BrowserModule,
@@ -51,7 +55,9 @@ import { AuthenticatorService } from '../providers/authenticatorService';
     ResultadosPage,
     LoginPage,
     UserPage,
-    AltaServicePage
+    AltaServicePage,
+    ReputationPage,
+    AddQualifyPage
   ],
   providers: [
     StatusBar,

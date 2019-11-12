@@ -8,6 +8,7 @@ import { AltaServicePage } from '../pages/alta-service/alta-service';
 import { LoginPage } from '../pages/login/login';
 import { ResultadosPage } from '../pages/resultados/resultados';
 import { UserPage } from '../pages/user/user';
+import { ReputationPage } from '../pages/reputation/reputation';
 
 @Component({
   templateUrl: 'app.html'
@@ -29,7 +30,8 @@ export class MyApp {
         { title: 'Home', component: ResultadosPage },
         { title: 'User', component: UserPage },
         { title: 'Publicar', component: AltaServicePage },
-        { title: 'Login', component: LoginPage }
+        { title: 'Login', component: LoginPage },
+        { title: 'Reputación', component: ReputationPage }
       ];
     });
   }
