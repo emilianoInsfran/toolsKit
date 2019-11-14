@@ -74,9 +74,7 @@ export class LoginPage {
       this.http.post(Config.heroku_backend_url+'usuarios' ,{email: user.email, accessToken: user.accessToken, nombre: user.nombre, apellido: user.apellido})
       .subscribe(
         res => {
-          this.storage.set('backend_user', {
-            info:JSON.stringify(res)
-          })
+          this.storage.set('backend_user', res)
           .then(()=>{
             this.gotoPage()
           })

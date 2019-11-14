@@ -26,6 +26,8 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuth } from '@angular/fire/auth';
 
 import { AuthenticatorService } from '../providers/authenticatorService';
+import { UtilService } from  '../providers/utilService';
+import { StarRatingModule } from 'ionic3-star-rating';
 
 
 @NgModule({
@@ -46,7 +48,8 @@ import { AuthenticatorService } from '../providers/authenticatorService';
     HttpClientModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(Config.FIREBASE_CONFIG),
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    StarRatingModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -65,6 +68,7 @@ import { AuthenticatorService } from '../providers/authenticatorService';
     GooglePlus,
     AngularFireAuth,
     AuthenticatorService,
+    UtilService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ],
   exports: [MyFilterPipe]

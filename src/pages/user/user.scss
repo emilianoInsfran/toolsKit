@@ -1,4 +1,4 @@
-page-login {
+page-user {
     .contenedor{
         background: url(https://img.freepik.com/vector-gratis/suministros-herramientas-construccion-constructor-construccion-viviendas_38901-60.jpg?size=338&ext=jpg);
 
@@ -14,46 +14,44 @@ page-login {
         background-color: #2b91b3;
         color: white;
         border-radius: 20px;
+        margin-bottom: 20px;
     }
 
+    .img-tel {
+        height: 80px;
+        width: 100%;
+        display: inline-block;
+        background-image: url(../../assets/imgs/call.png);
+        background-repeat: no-repeat;
+        background-size: contain;
+        /*  */
+        background-position: center;
+    }
+    
+    a {
+        height: 80px;
+        width: 40%;
+        display: inline-block;
+        margin-top: 40px;
+    }
+    
+    .comentarios {
+        padding: 5px;
+        border: 1px solid gray;
+    }
 
+	select,input {
+	    width: 100%;
+	    height: 40px;
+	    margin-top: 20px;
+	    padding-left: 20px;
+	    border-radius: 10px;
+	    margin-bottom: 20px;
+	    border: 1px solid gray;
+	}
+
+	form {
+	    margin-top: 15%;
+	}
 
 }
-
-.img-tel {
-    height: 80px;
-    width: 100%;
-    display: inline-block;
-    background-image: url(../../assets/imgs/call.png);
-    background-repeat: no-repeat;
-    background-size: contain;
-    /*  */
-    background-position: center;
-}
-
-a {
-    height: 80px;
-    width: 40%;
-    display: inline-block;
-    margin-top: 40px;
-}
-
-.comentarios {
-    padding: 5px;
-    border: 1px solid gray;
-}
-
-select,input {
-    width: 100%;
-    height: 40px;
-    margin-top: 20px;
-    padding-left: 20px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    border: 1px solid gray;
-}
-
-form {
-    margin-top: 15%;
-}
-

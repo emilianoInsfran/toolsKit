@@ -31,7 +31,7 @@ export class ResultadosPage {
   fil:boolean = true;
   myFilterPipe2: string;
   order: string;
-  ubicacionHerramienta:any;
+  ubicacionHerramienta;
 
   constructor(
     public navCtrl: NavController,
@@ -48,15 +48,7 @@ export class ResultadosPage {
   } 
 
   getUbicacion(){
-    this.ubicacionHerramienta = [
-      {
-        nombre:'Ezeiza'
-      },{
-        nombre:'Monte Grande'
-      },{
-        nombre:'Avellaneda'
-      }
-    ]
+    this.ubicacionHerramienta = Config.ZONAS;
   }
 
   getConfigHerramientas(obj) {

@@ -45,37 +45,69 @@
      <h2>Publicar Herramienta</h2>
     <ion-item class="item">
       <ion-label class="label">Nombre </ion-label>
-      <ion-input class="input" type="text" [(ngModel)]="name" required></ion-input>
+      <ion-input class="input" type="text" [(ngModel)]="herramienta.nombre" name="nombre" ></ion-input>
     </ion-item>
     <ion-item class="item">
       <ion-label class="label">Cantidad</ion-label>
-      <ion-input type="number" [(ngModel)]="cant"></ion-input>
+      <ion-input type="number" [(ngModel)]="herramienta.cantidad" name="cantidad" ></ion-input>
     </ion-item>
     <ion-item class="item">
+        <ion-label class="label">Precio</ion-label>
+        <ion-input type="number" [(ngModel)]="herramienta.precio" name="precio" ></ion-input>
+      </ion-item>
+    <ion-item class="item">
       <ion-label class="label">Imagen</ion-label>
-      <ion-input type="file" [(ngModel)]="file"></ion-input>
+      <ion-input type="file" [(ngModel)]="imagenesTMP" name="imagenesTMP" (change)="onFileSelectChange($event)" ></ion-input>
     </ion-item>
-     
-     <ion-item class="item">
-       <ion-label class="label">Categoria</ion-label>
-       <ion-select class="select" [(ngModel)]=publicar.ctria>
-         <ion-option value="">Electricidad</ion-option>
-         <ion-option value="">Jardineria</ion-option>
-         <ion-option value="">Albañileria</ion-option>
-         <ion-option value="">Sujecion</ion-option>
-         <ion-option value="">Cortar</ion-option>
-         <ion-option value="">Industriales</ion-option>
-       </ion-select>
-     </ion-item>
+    <ion-slides pager class="slide-container" parallax=true>
+      <ion-slide *ngFor="let i of imagenes" >
+            <ion-buttons end>
+              <button ion-button small clear (click)="removeImage(i.nombre)">X</button>
+            </ion-buttons>
+        <img [src]="i.url" class="slide-image"/>
+      </ion-slide>
+    </ion-slides>
+    <ion-item class="item" >
+      <ion-label class="label">Categoria</ion-label>
+      <ion-select class="select" [(ngModel)]="herramienta.tipoHerramienta" name="tipoHerramienta" cancelText="Cancelar" okText="Seleccionar">
+        <ion-option *ngFor="let t of tiposHerramienta" [value]="t.id">{{t.nombre}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item class="item" >
+      <ion-label class="label">Domicilio</ion-label>
+      <ion-select class="select" [(ngModel)]="domicilio" name="domicilio" cancelText="Cancelar" okText="Seleccionar" (ionChange)="onChangeDomicilio()">
+        <ion-option *ngFor="let d of domicilios" [value]="d.id">{{d.calle}} {{d.nro}}</ion-option>
+        <ion-option value="Otro">Otro</ion-option>
+      </ion-select>
+    </ion-item>
+    <span [hidden]="hideCustomDomicilioFields">
+      <ion-item class="item" >
+        <ion-label class="label">Calle</ion-label>
+        <ion-input type="text" [(ngModel)]="customDomicilio.calle" name="calle" ></ion-input>
+      </ion-item>
+      <ion-item class="item" >
+        <ion-label class="label">N&uacute;mero</ion-label>
+        <ion-input type="number" [(ngModel)]="customDomicilio.nro" name="nro" ></ion-input>
+      </ion-item>
+      <ion-item class="item" >
+        <ion-label class="label">C&oacute;digo postal</ion-label>
+        <ion-input type="number" [(ngModel)]="customDomicilio.codPostal" name="codPostal" ></ion-input>
+      </ion-item>
+      <ion-item class="item" >
+        <ion-label class="label">Zona</ion-label>
+        <ion-select class="select" [(ngModel)]="customDomicilio.zona" name="zona" cancelText="Cancelar" okText="Seleccionar" >
+          <ion-option *ngFor="let z of zonas" [value]="z">{{z}}</ion-option>
+        </ion-select>
+      </ion-item>
+    </span>
     <ion-item class="item"> 
         <ion-label class="label">Descripción</ion-label>
-        <ion-textarea class="textarea" clearOnEdit="true" [(ngModel)]="descripcion"></ion-textarea>
-      </ion-item> 
-
+        <ion-textarea class="textarea" clearOnEdit="true" [(ngModel)]="herramienta.descripcion" name="descripcion" ></ion-textarea>
+      </ion-item>
    </ion-list>
 
    <div>
-    <button class="buton" ion-button color="danger" block (click)="publicar()">Publicar</button>
+    <button class="buton" ion-button color="danger" block (click)="onSubmitHerramienta()" >Publicar</button>
    </div>
 
 </ion-content>

@@ -8,6 +8,10 @@ export class Config {
     messagingSenderId: "648889677926",
     appId: "1:648889677926:web:1ae9736df336086abb55a7"
   };
+
+  public  static ZONAS = ["El Jagüel", "Monte Grande", "Ezeiza", "Tristán Suárez", "La Unión", "Avellaneda"];
+
   public static WEB_CLIENT_ID = '648889677926-5bqvt18lsep5epkha91sdi9tvq38e5go.apps.googleusercontent.com';
   public static heroku_backend_url = 'https://herramientas-backend.herokuapp.com/';
+  //public static heroku_backend_url = 'http://localhost:9000/';
 }

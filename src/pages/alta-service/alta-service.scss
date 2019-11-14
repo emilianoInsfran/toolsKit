@@ -83,5 +83,20 @@ page-alta-service {
             color: ghostwhite;
         }
 
+        .slide-title {
+            margin-top: 2.8rem;
+        }
+    
+        .slide-image {
+            max-height: 200px;
+            max-width: 100%;
+            margin: 5px 0;
+            margin-bottom: 10px;
+        }
+    
+        .slide-container {
+            background-color: rgba(8, 8, 8, 0.74);
+        }
+
 
 }
