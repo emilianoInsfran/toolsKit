@@ -19,6 +19,8 @@ export class UserPage {
   userReady: boolean = false;
 
   allData:any;
+  otherUser:boolean;
+  edit:boolean=false;
 
   constructor(
     public navCtrl: NavController, 
@@ -49,12 +51,23 @@ export class UserPage {
         picture:['../../assets/imgs/user.jpg'],
         ubicacion:'Ezeiza',
         reputacion:'50%',
-        comentarios:"muy buena las herramiensta, estan en buen estado"
+        comentarios:"muy buena las herramiensta, estan en buen estado",
+        tel:123456789,
+        herramientas:[              {
+          nombre:'martillo',
+          precio:20
+        },
+        {
+          nombre:'taladro',
+          precio:20
+        }]
       }
       this.userReady = true;
+      this.otherUser = true;
 
     }else {
       console.log('userapp');
+      this.otherUser = false;
       let loading = this.loadingCtrl.create({
         content: 'Por favor espere'
       });
@@ -70,9 +83,23 @@ export class UserPage {
             picture: data.picture,
             ubicacion:'Ezeiza',
             reputacion:'50%',
-            comentarios:"muy buena las herramiensta, estan en buen estado"
+            comentarios:"muy buena las herramiensta, estan en buen estado",
+            tel:123456789,
+            
+            herramientas:[
+              {
+                nombre:'martillo',
+                precio:20
+              },
+              {
+                nombre:'taladro',
+                precio:20
+              }
+              ]
           };
           this.userReady = true;
+          this.otherUser = false;
+
         }
         loading.dismiss();
       }, error =>{
@@ -96,6 +123,13 @@ export class UserPage {
 
   gotoPage() {
     this.navCtrl.setRoot( LoginPage );
+  }
+
+  editar(){
+    this.edit = true;
+  }
+  saveChange(){
+    this.edit = false;
   }
 
 }

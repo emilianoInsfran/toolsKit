@@ -1,5 +1,6 @@
 <ion-header>
-  <ion-navbar hideBackButton>
+  <ion-navbar 
+  >
     <button ion-button menuToggle >
       <ion-icon name="menu">Perfil</ion-icon>
     </button>
@@ -7,9 +8,8 @@
 </ion-header>
 
 <ion-content *ngIf='userReady' class="contenedor">
-  
-  <ion-content >
-  <ion-card>
+
+  <ion-card *ngIf="!edit">
     <img [src]="user.picture"/>
     <ion-card-content>
       <ion-card-title>
@@ -26,14 +26,55 @@
         </p>
         <p>Comentarios</p>
         <div class="comentarios"><p> {{user.comentarios}}</p> </div>
-        <a href="tel:+34678567876"><div class="img-tel"></div></a>
+        <a *ngIf='otherUser' href="tel:+34678567876"><div class="img-tel"></div></a>
+        
+        <div *ngIf='!otherUser'>
+            <p >Tel: {{user.tel}}</p>
 
+            <p>Herramientas publicadas</p>
+            <ul>
+              <li *ngFor="let tool of user.herramientas">{{tool.nombre}} - precio {{tool.precio}}</li>
+            </ul>
+
+        </div>
 
     </ion-card-content>
   </ion-card>
-  <ion-row>
-    <ion-col>
+
+  <ion-card *ngIf="edit">
+      <ion-card-content>
+          <form action="">
+              <label for="tel">Ubicación</label>
+              <select name="" id="">
+                <option value="">Ezeiza</option>
+                <option value="">Monte Grande</option>
+
+              </select>
+            <label for="tel">Telefono</label>
+            <input type="tel">
+
+            <label for="">Herramientas</label>
+            <select name="" id="">
+              <option value="">martillo</option>
+              <option value="">taladro</option>
+
+            </select>
+
+            <label for="">precio por Hora</label>
+            <input type="number">
+          </form>
+  
+      </ion-card-content>
+    </ion-card>
+  <ion-row *ngIf='!otherUser'>
+    <ion-col *ngIf="!edit">
+        <button  ion-button block (click)="editar()">editar</button>
+
       <button ion-button block (click)="doGoogleLogout()">Logout</button>
     </ion-col>
+    <ion-col *ngIf="edit">
+        <button  ion-button block (click)="saveChange()">Guardar</button>
+    </ion-col>
+
   </ion-row>
 </ion-content>
