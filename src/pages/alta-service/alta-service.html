@@ -13,6 +13,7 @@
   </ion-navbar>
 </ion-header>
 
+<!--
 <ion-content padding class="contenedor">
   <form action="" class="formulario">
     <h2>Publicar</h2>
@@ -36,4 +37,45 @@
     <textarea name="descripcion" id="" cols="30" rows="10"></textarea>
     <button type="submit" class="btn btn-primary">Guardar</button>
   </form>
+</ion-content>
+-->
+<ion-content padding class="contenedor">
+ 
+  <ion-list class="formulario">
+     <h2>Publicar Herramienta</h2>
+    <ion-item class="item">
+      <ion-label class="label">Nombre </ion-label>
+      <ion-input class="input" type="text" [(ngModel)]="name" required></ion-input>
+    </ion-item>
+    <ion-item class="item">
+      <ion-label class="label">Cantidad</ion-label>
+      <ion-input type="number" [(ngModel)]="cant"></ion-input>
+    </ion-item>
+    <ion-item class="item">
+      <ion-label class="label">Imagen</ion-label>
+      <ion-input type="file" [(ngModel)]="file"></ion-input>
+    </ion-item>
+     
+     <ion-item class="item">
+       <ion-label class="label">Categoria</ion-label>
+       <ion-select class="select" [(ngModel)]=publicar.ctria>
+         <ion-option value="">Electricidad</ion-option>
+         <ion-option value="">Jardineria</ion-option>
+         <ion-option value="">Albañileria</ion-option>
+         <ion-option value="">Sujecion</ion-option>
+         <ion-option value="">Cortar</ion-option>
+         <ion-option value="">Industriales</ion-option>
+       </ion-select>
+     </ion-item>
+    <ion-item class="item"> 
+        <ion-label class="label">Descripción</ion-label>
+        <ion-textarea class="textarea" clearOnEdit="true" [(ngModel)]="descripcion"></ion-textarea>
+      </ion-item> 
+
+   </ion-list>
+
+   <div>
+    <button class="buton" ion-button color="danger" block (click)="publicar()">Publicar</button>
+   </div>
+
 </ion-content>
