@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams , LoadingController} from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { HttpClient } from '@angular/common/http';
-import { AuthenticatorService } from '../../providers/authenticatorService';
 import { Config } from '../../config';
+import { UtilService } from  '../../providers/utilService';
 
 
 @IonicPage()
@@ -15,6 +15,7 @@ export class HerramientaPage {
 
   usuario={};
   herramienta={};
+  opiniones;
 
   constructor(
     public navCtrl: NavController, 
@@ -22,7 +23,7 @@ export class HerramientaPage {
     private storage: Storage,
     public loadingCtrl: LoadingController,
     private http: HttpClient,
-    private authenticator: AuthenticatorService
+    public util: UtilService
     )
     {
     this.init();
@@ -47,6 +48,7 @@ export class HerramientaPage {
     this.getHerramienta(idHerramienta)
     .subscribe(herramienta => {
       this.herramienta = herramienta;
+      this.opiniones = (! this.util.isEmpty((<any>herramienta).reputacion) ) ?(<any>herramienta).reputacion.length:0;
     });
   }
 
