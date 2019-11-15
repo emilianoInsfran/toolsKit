@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams , LoadingController, Platform} from 'ionic-angular';
+import { IonicPage, NavController, NavParams , LoadingController,  ToastController, ModalController, ViewController, AlertController  } from 'ionic-angular';
 
 import { AuthenticatorService } from '../../providers/authenticatorService';
 import { Storage } from '@ionic/storage';
-
-import { ResultadosPage } from '../resultados/resultados';
+import { HttpClient } from '@angular/common/http';
 import { LoginPage } from '../login/login';
-
+import { Config } from '../../config';
+import { UtilService } from  '../../providers/utilService';
 
 @IonicPage()
 @Component({
@@ -15,104 +15,67 @@ import { LoginPage } from '../login/login';
 })
 export class UserPage {
 
-  user: any;
+  domicilios:any;
+  userGoogle: any;
+  user:any;
   userReady: boolean = false;
-
-  allData:any;
-  otherUser:boolean;
-  edit:boolean=false;
+  currentDomicilio:any;
 
   constructor(
-    public navCtrl: NavController, 
-    public navParams: NavParams, 
-    private storage: Storage,
-    public loadingCtrl: LoadingController,
-    private authenticator: AuthenticatorService
-  ) {
+      public navCtrl: NavController, 
+      public navParams: NavParams, 
+      private storage: Storage,
+      public loadingCtrl: LoadingController,
+      private authenticator: AuthenticatorService,
+      private http: HttpClient,
+      public util: UtilService,
+      public toastCtrl: ToastController,
+      public modalCtrl: ModalController,
+      public alertCtrl: AlertController
+    ){
 
-    this.allData = this.navParams.get('dataService');
-    console.log('usuario seleccionado. ', this.allData);
-    this.getInfo();
+    
    }
 
-  ionViewDidLoad() {
-
-
-  }
+   ionViewDidLoad(){
+      this.getInfo();
+   }
 
   getInfo(){
-    console.log('otro usuario',this.allData);
-    if(this.allData != undefined){
-      console.log('otro usuario');
-      this.user = {
-        name:"otro usuario",
-        apellido:"apellido",
-        email:'miemail@gmail.com',
-        picture:['../../assets/imgs/user.jpg'],
-        ubicacion:'Ezeiza',
-        reputacion:'50%',
-        comentarios:"muy buena las herramiensta, estan en buen estado",
-        tel:123456789,
-        herramientas:[              {
-          nombre:'martillo',
-          precio:20
-        },
-        {
-          nombre:'taladro',
-          precio:20
-        }]
-      }
-      this.userReady = true;
-      this.otherUser = true;
-
-    }else {
-      console.log('userapp');
-      this.otherUser = false;
-      let loading = this.loadingCtrl.create({
-        content: 'Por favor espere'
-      });
-      loading.present();
-      this.storage.get('google_user')
-      .then(data => {
-        if(data){
-          console.log("user",data);
-          this.user = {
-            name: data.nombre,
-            apellido:data.apellido,
-            email: data.email,
-            picture: data.picture,
-            ubicacion:'Ezeiza',
-            reputacion:'50%',
-            comentarios:"muy buena las herramiensta, estan en buen estado",
-            tel:123456789,
-            
-            herramientas:[
-              {
-                nombre:'martillo',
-                precio:20
-              },
-              {
-                nombre:'taladro',
-                precio:20
-              }
-              ]
-          };
+    let loading = this.loadingCtrl.create({
+      content: 'Por favor espere'
+    });
+    loading.present();
+    this.storage.get('google_user')
+    .then(google_user => {
+      if(!this.util.isEmpty(google_user)){
+        this.userGoogle = google_user;
+        this.storage.get('backend_user')
+        .then(backend_user => {
+          this.user = backend_user;
+          this.refreshUser(this.user);
+          this.loadDomicilios(this.user);
           this.userReady = true;
-          this.otherUser = false;
-
-        }
-        loading.dismiss();
-      }, error =>{
-        console.log(error);
-        loading.dismiss();
-      });
-    }
+        })
+      }
+      else{
+        this.gotoPage();
+        const toast =this.toastCtrl.create({
+          message:"Debe iniciar sesion",
+          duration:3000
+        });
+        toast.present();
+      }
+      loading.dismiss();
+    }, error =>{
+      console.log(error);
+      loading.dismiss();
+    });
   }
 
   doGoogleLogout(){
     this.authenticator.doOauthLogout("Google")
     .then(res => {
-      //user logged out so we will remove him from the NativeStorage
       this.storage.remove('google_user');
       this.storage.remove('backend_user');
       this.userReady = false;
@@ -126,11 +89,316 @@ export class UserPage {
     this.navCtrl.setRoot( LoginPage );
   }
 
-  editar(){
-    this.edit = true;
+
+  loadDomicilios(user){
+    this.http.get(Config.heroku_backend_url+'usuarios/' + user.id + "/domicilios")
+    .subscribe(
+      domicilios => {
+        this.domicilios = domicilios;
+        this.storage.set('backend_user_domicilios', domicilios)
+      },
+      err => {
+        console.log("Error occured");
+      }
+    );
   }
-  saveChange(){
-    this.edit = false;
+
+  refreshUser(user){
+    this.http.get(Config.heroku_backend_url+'usuarios/' + user.id )
+    .subscribe(
+      backend_user => {
+        this.user = backend_user;
+        this.storage.set('backend_user', backend_user)
+      },
+      err => {
+        console.log("Error occured");
+      }
+    );
   }
+
+  verDomicilio(idDomicilio){
+    debugger;
+    this.domicilios.map(domicilio=>{
+      if(domicilio.id == idDomicilio){
+        this.currentDomicilio = domicilio;
+      }
+    });
+    let contactModal = this.modalCtrl.create(ModalDomicilio, {user:this.user, domicilio: this.currentDomicilio, action:"ver"});
+
+    contactModal.onDidDismiss(data => {
+      if(data.success){
+        this.loadDomicilios(this.user);
+      }
+    });
+    contactModal.present();
+  }
+
+  editarDomicilio(idDomicilio){
+    debugger;
+    this.domicilios.map(domicilio=>{
+      if(domicilio.id == idDomicilio){
+        this.currentDomicilio = domicilio;
+      }
+    });
+    let contactModal = this.modalCtrl.create(ModalDomicilio, {user:this.user, domicilio: this.currentDomicilio, action:"editar"});
+
+    contactModal.onDidDismiss(data => {
+      if(data.success){
+        this.loadDomicilios(this.user);
+      }
+    });
+    contactModal.present();
+  }
+
+  eliminarDomicilio(idDomicilio){
+    debugger;
+    this.domicilios.map(domicilio=>{
+      if(domicilio.id == idDomicilio){
+        this.currentDomicilio = domicilio;
+      }
+    });
+
+    const confirm = this.alertCtrl.create({
+      title: this.currentDomicilio.calle+" "+ this.currentDomicilio.nro,
+      message: 'Esta seguro de querer eliminar la dirección?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          handler: () => {
+          }
+        },
+        {
+          text: 'Aceptar',
+          handler: () => {
+            this.destroyDomicilio();
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
+
+  destroyDomicilio(){
+    this.util.showLoading('Eliminando datos...')
+    this.deleteDomicilio()
+    .subscribe(
+      res => {
+        this.loadDomicilios(this.user);
+        this.util.hideLoading();
+        const toast =this.toastCtrl.create({
+          message:"Dirección eliminada!",
+          duration:3000
+        });
+        toast.present();
+      },
+      err => {
+        this.util.hideLoading();
+        const toast =this.toastCtrl.create({
+          message:"Se produjo un error al eliminar los datos",
+          duration:3000
+        });
+        toast.present();
+      }
+    );
+  }
+
+  deleteDomicilio(){
+    return this.http.delete(Config.heroku_backend_url+'usuarios/'+this.user.id+"/domicilios/"+this.currentDomicilio.id);
+  }
+
+  crearDomicilio(){
+    debugger;
+    
+    let contactModal = this.modalCtrl.create(ModalDomicilio, {user:this.user, action:"crear"});
+
+    contactModal.onDidDismiss(data => {
+      if(data.success){
+        this.loadDomicilios(this.user);
+      }
+    });
+    contactModal.present();
+  }
+
+
+
+
+
+
+
+  editarTelefono(){
+    console.log("editar telefono");
+  }
+
+  eliminarTelefono(){
+    console.log("eliminar telefono");
+  }
+
+  crearTelefono(){
+    console.log("crear telefono");
+  }
+
+
+
+
+}
+
+
+
+
+
+
+
+//-----------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+@Component({
+  selector: 'modal-domicilio',
+  templateUrl: 'modal-domicilio.html'
+})
+
+export class ModalDomicilio {
+
+  action:null
+  zonas;
+  domicilio:{
+    id:null,
+    usuario:null,
+    calle: null,
+    nro: null,
+    zona:null,
+    codPostal: null
+  }
+
+  constructor(public viewCtrl: ViewController, public params: NavParams, public util: UtilService, public toastCtrl: ToastController, private http: HttpClient) {
+    
+    
+    this.domicilio={
+      id:(params.get('action') == "editar")?   params.get('domicilio').id:    null,
+      usuario:(params.get('action') == "editar")?    params.get('domicilio').usuario:   this.params.get('user').id,
+      calle: (params.get('action') == "editar")?  params.get('domicilio').calle   : null,
+      nro: (params.get('action') == "editar")?  params.get('domicilio').nro:  null,
+      zona:(params.get('action') == "editar")? params.get('domicilio').zona :null,
+      codPostal: (params.get('action') == "editar")? params.get('domicilio').codPostal: null
+    }
+    
+    this.zonas= Config.ZONAS;
+    this.action =params.get('action');
+  }
+
+
+  actualizarDomicilio(){
+    var validacion = this.validateDomicilio();
+    if(!(<any>validacion).isValid){
+      const toast =this.toastCtrl.create({
+        message: (<any>validacion).message,
+        duration:3000
+      });
+      toast.present();
+    }
+    else{
+      if(this.action == "editar"){
+        this.updateDomicilio();
+      }
+      else{
+        this.saveDomicilio();
+      }
+      
+    }
+    
+  }
+
+  validateDomicilio(){
+    var result = {isValid:true,message:""};
+    
+    if( this.util.isEmpty(this.domicilio.calle) ){
+      result.isValid = false;
+      result.message = "Calle es requerida";
+    }
+    else if( this.util.isEmpty(this.domicilio.nro) ){
+      result.isValid = false;
+      result.message = "Número es requerido";
+    }
+    else if( this.util.isEmpty(this.domicilio.codPostal) ){
+      result.isValid = false;
+      result.message = "Código Postal es requerido";
+    }
+    else if( this.util.isEmpty(this.domicilio.zona) ){
+      result.isValid = false;
+      result.message = "Zona es requerida";
+    }
+    
+    return result;
+  }
+
+  updateDomicilio(){
+    this.util.showLoading('Actualizando datos...')
+    this.putDomicilio()
+    .subscribe(
+      res => {
+        this.util.hideLoading();
+        const toast =this.toastCtrl.create({
+          message:"Dirección actualizada!",
+          duration:3000
+        });
+        toast.present();
+        this.viewCtrl.dismiss({success:true});
+      },
+      err => {
+        this.util.hideLoading();
+        const toast =this.toastCtrl.create({
+          message:"Se produjo un error al actualizar los datos",
+          duration:3000
+        });
+        toast.present();
+      }
+    );
+  }
+
+  saveDomicilio(){
+    this.util.showLoading('Creando datos...')
+    this.postDomicilio()
+    .subscribe(
+      res => {
+        this.util.hideLoading();
+        const toast =this.toastCtrl.create({
+          message:"Dirección creada!",
+          duration:3000
+        });
+        toast.present();
+        this.viewCtrl.dismiss({success:true});
+      },
+      err => {
+        this.util.hideLoading();
+        const toast =this.toastCtrl.create({
+          message:"Se produjo un error al crear los datos",
+          duration:3000
+        });
+        toast.present();
+      }
+    );
+  }
+
+  
+
+  putDomicilio(){
+    return this.http.put(Config.heroku_backend_url+'usuarios/'+this.params.get('user').id+"/domicilios/"+this.domicilio.id, this.domicilio);
+  }
+
+  postDomicilio(){
+    return this.http.post(Config.heroku_backend_url+'usuarios/'+this.params.get('user').id+"/domicilios", this.domicilio);
+  }
+
+  
+
+  cerrar(){
+    this.viewCtrl.dismiss({success:false});
+  }
+
+  
 
 }

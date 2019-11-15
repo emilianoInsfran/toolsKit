@@ -28,9 +28,8 @@ export class MyApp {
 
       this.pages = [
         { title: 'Home', component: ResultadosPage },
-        { title: 'User', component: UserPage },
+        { title: 'Mi cuenta', component: UserPage },
         { title: 'Publicar', component: AltaServicePage },
-        { title: 'Login', component: LoginPage },
         { title: 'Reputación', component: ReputationPage }
       ];
     });

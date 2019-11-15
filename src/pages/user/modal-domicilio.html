@@ -1,0 +1,33 @@
+
+<ion-content  class="contenedor">
+    <ion-card >
+        <ion-card-content>
+            <form action="">
+                <label for="calle">Calle</label>
+                <input id="calle" type="text" [(ngModel)]="domicilio.calle" name="calle" [disabled]="action === 'ver'">
+
+                <label for="nro">N&uacute;mero</label>
+                <input id="nro" type="number" [(ngModel)]="domicilio.nro" name="nro" [disabled]="action === 'ver'">
+
+                <label for="codPostal">C&oacute;digo postal</label>
+                <input id="codPostal" type="text" [(ngModel)]="domicilio.codPostal" name="codPostal" [disabled]="action === 'ver'">
+                
+                <label for="zona">Zona</label>
+                <select  id="zona" [(ngModel)]="domicilio.zona" name="zona" [disabled]="action === 'ver'">
+                    <option *ngFor="let z of zonas" [value]="z">{{z}}</option>
+                </select>
+            </form>
+        </ion-card-content>
+    </ion-card>
+    <ion-row>
+        <ion-col>
+            <button ngClass="login" ion-button color="light" block (click)="cerrar()">Cancelar</button>
+        </ion-col>
+        <ion-col *ngIf="action === 'editar'">
+            <button ngClass="login" ion-button block (click)="actualizarDomicilio()">Actualizar</button>
+        </ion-col>
+        <ion-col *ngIf="action === 'crear'">
+            <button ngClass="login" ion-button block (click)="actualizarDomicilio()">Crear</button>
+        </ion-col>
+    </ion-row>
+</ion-content>

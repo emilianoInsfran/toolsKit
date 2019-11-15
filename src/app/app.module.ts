@@ -9,7 +9,7 @@ import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { ReputationPage } from '../pages/reputation/reputation';
 import { AddQualifyPage } from '../pages/addQualify/addQualify';
-import { UserPage } from '../pages/user/user';
+import { UserPage, ModalDomicilio } from '../pages/user/user';
 import { AltaServicePage } from '../pages/alta-service/alta-service';
 
 import { ResultadosPage } from '../pages/resultados/resultados';
@@ -38,6 +38,7 @@ import { StarRatingModule } from 'ionic3-star-rating';
     LoginPage,
     MyFilterPipe,
     UserPage,
+    ModalDomicilio,
     AltaServicePage,
     ReputationPage,
     AddQualifyPage
@@ -57,6 +58,7 @@ import { StarRatingModule } from 'ionic3-star-rating';
     HomePage,
     ResultadosPage,
     LoginPage,
+    ModalDomicilio,
     UserPage,
     AltaServicePage,
     ReputationPage,

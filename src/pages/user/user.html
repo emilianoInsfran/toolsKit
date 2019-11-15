@@ -1,80 +1,140 @@
 <ion-header>
-  <ion-navbar 
-  >
-    <button ion-button menuToggle >
-      <ion-icon name="menu">Perfil</ion-icon>
-    </button>
-  </ion-navbar>
-</ion-header>
-
-<ion-content *ngIf='userReady' class="contenedor">
-
-  <ion-card *ngIf="!edit">
-    <img [src]="user.picture"/>
-    <ion-card-content>
-      <ion-card-title>
-        Bienvenido {{user.name}}  {{user.apellido}}!
-        </ion-card-title>
-       <p>
-        Email: {{user.email}}
-       </p>
-       <p>
-          Ubicación: {{user.ubicacion}}
-        </p>
-        <p>
-          Reputación : {{user.reputacion}}
-        </p>
-        <p>Comentarios</p>
-        <div class="comentarios"><p> {{user.comentarios}}</p> </div>
-        <a *ngIf='otherUser' href="tel:+34678567876"><div class="img-tel"></div></a>
-        
-        <div *ngIf='!otherUser'>
-            <p >Tel: {{user.tel}}</p>
-
-            <p>Herramientas publicadas</p>
-            <ul>
-              <li *ngFor="let tool of user.herramientas">{{tool.nombre}} - precio {{tool.precio}}</li>
-            </ul>
-
-        </div>
-
-    </ion-card-content>
-  </ion-card>
-
-  <ion-card *ngIf="edit">
-      <ion-card-content>
-          <form action="">
-              <label for="tel">Ubicación</label>
-              <select name="" id="">
-                <option value="">Ezeiza</option>
-                <option value="">Monte Grande</option>
-
-              </select>
-            <label for="tel">Telefono</label>
-            <input type="tel">
-
-            <label for="">Herramientas</label>
-            <select name="" id="">
-              <option value="">martillo</option>
-              <option value="">taladro</option>
-
-            </select>
-
-            <label for="">precio por Hora</label>
-            <input type="number">
-          </form>
+    <ion-navbar hideBackButton>
+      <button ion-button menuToggle >
+        <ion-icon name="menu">Perfil</ion-icon>
+      </button>
+    </ion-navbar>
+  </ion-header>
   
+  <ion-content *ngIf='userReady' class="contenedor">
+    
+    <ion-card>
+      <ion-card-content>
+        <img [src]="userGoogle.picture"/>
       </ion-card-content>
     </ion-card>
-  <ion-row *ngIf='!otherUser'>
-    <ion-col *ngIf="!edit">
-        <button  ion-button block (click)="editar()">editar</button>
 
-      <button ion-button block (click)="doGoogleLogout()">Logout</button>
-    </ion-col>
-    <ion-col *ngIf="edit">
-        <button  ion-button block (click)="saveChange()">Guardar</button>
-    </ion-col>
+    <ion-card>
+      <ion-card-content>
+        <ion-card-title>
+          Bienvenido {{userGoogle.nombre}}  {{userGoogle.apellido}}!
+        </ion-card-title>
+        <ion-list inset>
+          <button ion-item >
+              <p>Email: {{userGoogle.email}}</p>
+          </button>
+          <button ion-item >
+              <p>DNI : {{user.documento}}</p>
+          </button>  
+        </ion-list>
+      </ion-card-content>
+      <ion-item>
+        <button ion-button icon-start clear item-end>
+          <ion-icon name="create"></ion-icon>
+          Editar
+        </button>
+      </ion-item>
+    </ion-card>
+  
+    <ion-card>
+      <ion-card-content>
+        <ion-card-title>Domicilios</ion-card-title>
+        <ion-list inset>
+          <ion-item-sliding *ngFor="let d of domicilios"  >
+            <ion-item>
+              <button ion-item (click)="verDomicilio(d.id)">
+                  <p>Calle: {{d.calle}} Nro: {{d.nro}}</p>
+              </button>
+            </ion-item>
+            <ion-item-options side="right">
+              <button ion-button small color="primary" (click)="verDomicilio(d.id)">
+                <ion-icon name="eye"></ion-icon>
+                Ver
+              </button>
+              <button ion-button small color="secondary" (click)="editarDomicilio(d.id)">
+                <ion-icon name="create"></ion-icon>
+                Editar
+              </button>
+              <button ion-button small color="danger" (click)="eliminarDomicilio(d.id)">
+                <ion-icon name="trash"></ion-icon>
+                Eliminar
+              </button>
+            </ion-item-options>  
+          </ion-item-sliding>
+        </ion-list>
+      </ion-card-content>
+      <ion-item>
+        <button ion-button icon-start clear item-end  (click)="crearDomicilio()">
+          <ion-icon name="add-circle"></ion-icon>
+          Agregar
+        </button>
+      </ion-item>
+    </ion-card>
 
-  </ion-row>
-</ion-content>
+    <ion-card>
+        <ion-card-content>
+          <ion-card-title>Tel&eacute;fonos</ion-card-title>
+          <ion-list inset>
+            <ion-item-sliding *ngFor="let t of user.telefonos"  >
+              <ion-item>
+                <button ion-item >
+                    <p>{{t.numero}}</p>
+                </button>
+              </ion-item>
+              <ion-item-options side="right">
+                <button ion-button small color="secondary" (click)="editarTelefono(d)">
+                  <ion-icon name="create"></ion-icon>
+                  Editar
+                </button>
+                <button ion-button small color="danger" (click)="eliminarTelefono(d)">
+                  <ion-icon name="trash"></ion-icon>
+                  Eliminar
+                </button>
+              </ion-item-options>  
+            </ion-item-sliding>
+          </ion-list>
+        </ion-card-content>
+        <ion-item>
+          <button ion-button icon-start clear item-end  (click)="crearTelefono()">
+            <ion-icon name="add-circle"></ion-icon>
+            Agregar
+          </button>
+        </ion-item>
+      </ion-card>
+    <ion-card>
+
+      <ion-card-content>
+        <ion-card-title>Reputacion como Proveedor</ion-card-title>
+        <ionic3-star-rating 
+          activeIcon = "ios-star"
+          defaultIcon = "ios-star-outline"
+          activeColor = "#488aff" 
+          defaultColor = "#f4f4f4"
+          readonly="true"
+          halfStar="true"
+          rating="{{user.promedioProveedor}}"
+          fontSize = "28px">
+        </ionic3-star-rating>
+      </ion-card-content>
+    </ion-card>
+    <ion-card>
+        <ion-card-content>
+          <ion-card-title>Reputacion como Cliente</ion-card-title>
+          <ionic3-star-rating
+            activeIcon = "ios-star"
+            defaultIcon = "ios-star-outline"
+            activeColor = "#488aff" 
+            defaultColor = "#f4f4f4"
+            readonly="true"
+            halfStar="true"
+            rating="{{user.promedioUsuario}}"
+            fontSize = "28px">
+          </ionic3-star-rating>
+        </ion-card-content>
+      </ion-card>
+    <ion-row>
+      <ion-col>
+        <button ngClass="login" ion-button block (click)="doGoogleLogout()">Salir</button>
+      </ion-col>
+    </ion-row>
+  </ion-content>
