@@ -5,7 +5,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { AltaServicePage } from '../pages/alta-service/alta-service';
 
-import { LoginPage } from '../pages/login/login';
 import { ResultadosPage } from '../pages/resultados/resultados';
 import { UserPage } from '../pages/user/user';
 import { ReputationPage } from '../pages/reputation/reputation';

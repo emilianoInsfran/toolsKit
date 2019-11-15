@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams , LoadingController,  ToastController, ModalController, ViewController, AlertController  } from 'ionic-angular';
-
 import { AuthenticatorService } from '../../providers/authenticatorService';
 import { Storage } from '@ionic/storage';
 import { HttpClient } from '@angular/common/http';
@@ -221,20 +220,110 @@ export class UserPage {
 
 
 
-  editarTelefono(){
-    console.log("editar telefono");
+  editarTelefono(index){
+    let contactModal = this.modalCtrl.create(ModalTelefono, {usuario:this.user, index:index, action:"editar"});
+
+    contactModal.onDidDismiss(data => {
+      if(data.success){
+        this.storage.set('backend_user', this.user)
+      }
+    });
+    contactModal.present();
   }
 
-  eliminarTelefono(){
-    console.log("eliminar telefono");
+  eliminarTelefono(index){
+    const confirm = this.alertCtrl.create({
+      title: this.getTipoTelefono(this.user.telefonos[index].tipo)+" "+ this.user.telefonos[index].numero,
+      message: 'Esta seguro de querer eliminar el teléfono?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          handler: () => {
+          }
+        },
+        {
+          text: 'Aceptar',
+          handler: () => {
+            this.destroyTelefono(index);
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
+
+  destroyTelefono(index){
+    this.updateUsuario(this.user.telefonos.splice(index,1));
+  }
+
+  updateUsuario(telefono){
+    this.util.showLoading('Actualizando datos...');
+    console.log()
+    this.putUsuario()
+    .subscribe(
+      res => {
+        this.util.hideLoading();
+        this.storage.set('backend_user', this.user)
+        const toast =this.toastCtrl.create({
+          message:"Información actualizada!",
+          duration:3000
+        });
+        toast.present();
+      },
+      err => {
+        this.util.hideLoading();
+        this.storage.get('backend_user')
+        .then(user=> this.user = user);
+        const toast =this.toastCtrl.create({
+          message:"Se produjo un error al actualizar los datos",
+          duration:3000
+        });
+        toast.present();
+      }
+    );
+  }
+
+
+  putUsuario(){
+    return this.http.put(Config.heroku_backend_url+'usuarios/'+this.user.id, {telefonos:this.user.telefonos, email:this.user.email});
   }
 
   crearTelefono(){
-    console.log("crear telefono");
+    this.user.telefonos.push({});
+    let contactModal = this.modalCtrl.create(ModalTelefono, {usuario:this.user, action:"crear", index:this.user.telefonos.length-1});
+
+    contactModal.onDidDismiss(data => {
+      if(data.success){
+        this.storage.set('backend_user', this.user)
+      }
+      else{
+        this.user.telefonos.pop();
+      }
+    });
+    contactModal.present();
   }
 
 
 
+
+  editarInfoUsuario(){
+    let contactModal = this.modalCtrl.create(ModalUsuario, {usuario:this.user});
+
+    contactModal.onDidDismiss(data => {
+      if(data.success){
+        this.storage.set('backend_user', this.user)
+      }
+    });
+    contactModal.present();
+  }
+
+  getTipoDocumento(id){
+    return this.util.getTipoDocumento(id);
+  }
+
+  getTipoTelefono(id){
+    return this.util.getTipoTelefono(id);
+  }
 
 }
 
@@ -268,22 +357,22 @@ export class ModalDomicilio {
     nro: null,
     zona:null,
     codPostal: null
-  }
+  };
 
   constructor(public viewCtrl: ViewController, public params: NavParams, public util: UtilService, public toastCtrl: ToastController, private http: HttpClient) {
     
     
     this.domicilio={
-      id:(params.get('action') == "editar" || params.get('action') == "ver")?   params.get('domicilio').id:    null,
-      usuario:(params.get('action') == "editar" || params.get('action') == "ver")?    params.get('domicilio').usuario:   this.params.get('user').id,
-      calle: (params.get('action') == "editar" || params.get('action') == "ver")?  params.get('domicilio').calle   : null,
-      nro: (params.get('action') == "editar" || params.get('action') == "ver")?  params.get('domicilio').nro:  null,
-      zona:(params.get('action') == "editar" || params.get('action') == "ver")? params.get('domicilio').zona :null,
-      codPostal: (params.get('action') == "editar" || params.get('action') == "ver")? params.get('domicilio').codPostal: null
+      id:(this.params.get('action') == "editar" || this.params.get('action') == "ver")?   this.params.get('domicilio').id:    null,
+      usuario:(this.params.get('action') == "editar" || this.params.get('action') == "ver")?    this.params.get('domicilio').usuario:   this.params.get('user').id,
+      calle: (this.params.get('action') == "editar" || this.params.get('action') == "ver")?  this.params.get('domicilio').calle   : null,
+      nro: (this.params.get('action') == "editar" || this.params.get('action') == "ver")?  this.params.get('domicilio').nro:  null,
+      zona:(this.params.get('action') == "editar" || this.params.get('action') == "ver")? this.params.get('domicilio').zona :null,
+      codPostal: (this.params.get('action') == "editar" || this.params.get('action') == "ver")? this.params.get('domicilio').codPostal: null
     }
     
     this.zonas= Config.ZONAS;
-    this.action =params.get('action');
+    this.action = this.params.get('action');
   }
 
 
@@ -396,5 +485,205 @@ export class ModalDomicilio {
   }
 
   
+
+}
+
+
+
+
+
+
+
+
+
+//-----------------------------------------------------------------------------------------------
+
+
+@Component({
+  selector: 'modal-usuario',
+  templateUrl: 'modal-usuario.html'
+})
+export class ModalUsuario {
+
+  tipos;
+  usuario = {
+    id:null,
+    email:null,
+    documento:null
+  };
+
+  constructor(public viewCtrl: ViewController, public params: NavParams, public util: UtilService, public toastCtrl: ToastController, private http: HttpClient) {
+    this.tipos = Config.TIPOS_DOCUMENTO;
+    this.usuario ={
+      id:this.params.get('usuario').id,
+      email:this.params.get('usuario').email,
+      documento:this.params.get('usuario').documento
+    }
+  }
+
+
+  actualizarUsuario(){
+    var validacion = this.validateUsuario();
+    if(!(<any>validacion).isValid){
+      const toast =this.toastCtrl.create({
+        message: (<any>validacion).message,
+        duration:3000
+      });
+      toast.present();
+    }
+    else{
+      this.updateUsuario();
+    }
+    
+  }
+
+  validateUsuario(){
+    var result = {isValid:true,message:""};
+    
+    if( this.util.isEmpty(this.usuario.documento) ){
+      result.isValid = false;
+      result.message = "Dni es requerido";
+    }
+    
+    return result;
+  }
+
+  updateUsuario(){
+    this.util.showLoading('Actualizando datos...')
+    this.putUsuario()
+    .subscribe(
+      res => {
+        this.util.hideLoading();
+        const toast =this.toastCtrl.create({
+          message:"Información actualizada!",
+          duration:3000
+        });
+        toast.present();
+        this.params.get('usuario').documento= this.usuario.documento;
+        this.viewCtrl.dismiss({success:true});
+      },
+      err => {
+        this.util.hideLoading();
+        const toast =this.toastCtrl.create({
+          message:"Se produjo un error al actualizar los datos",
+          duration:3000
+        });
+        toast.present();
+      }
+    );
+  }
+
+
+  putUsuario(){
+    return this.http.put(Config.heroku_backend_url+'usuarios/'+this.usuario.id, {documento:this.usuario.documento, email:this.usuario.email});
+  }
+
+  cerrar(){
+    this.viewCtrl.dismiss({success:false});
+  }
+
+
+}
+
+
+
+
+
+
+
+//-----------------------------------------------------------------------------------------------
+
+
+@Component({
+  selector: 'modal-telefono',
+  templateUrl: 'modal-telefono.html'
+})
+export class ModalTelefono {
+
+  tipos:any;
+  index:any;
+  usuario:any;
+  action:any;
+  
+  constructor(public viewCtrl: ViewController, public params: NavParams, public util: UtilService, public toastCtrl: ToastController, private http: HttpClient) {
+    
+    this.tipos = Config.TIPOS_TELEFONO;
+    this.usuario ={
+      id: this.params.get('usuario').id,
+      email: this.params.get('usuario').email,
+      telefonos: this.params.get('usuario').telefonos
+    }
+    this.index = this.params.get('index');
+  }
+
+
+  actualizarUsuario(index){
+    var validacion = this.validateUsuario(index);
+    if(!(<any>validacion).isValid){
+      const toast =this.toastCtrl.create({
+        message: (<any>validacion).message,
+        duration:3000
+      });
+      toast.present();
+    }
+    else{
+      this.updateUsuario();
+    }
+    
+  }
+
+  validateUsuario(index){
+    var result = {isValid:true,message:""};
+    if( this.util.isEmpty(this.usuario.telefonos[index].tipo) ){
+      result.isValid = false;
+      result.message = "Tipo es requerido";
+    }
+    else if( this.util.isEmpty(this.usuario.telefonos[index].numero) ){
+      result.isValid = false;
+      result.message = "Número es requerido";
+    }
+    else if( String(this.usuario.telefonos[index].numero).length != this.util.getLongitudTipoTelefono(this.usuario.telefonos[index].tipo) ){
+      console.log(String(this.usuario.telefonos[index].numero).length);
+      result.isValid = false;
+      result.message = "Número debe ser de "+this.util.getLongitudTipoTelefono(this.usuario.telefonos[index].tipo)+" cifras";
+    }
+    
+    return result;
+  }
+
+  updateUsuario(){
+    this.util.showLoading('Actualizando datos...')
+    this.putUsuario()
+    .subscribe(
+      res => {
+        this.util.hideLoading();
+        const toast =this.toastCtrl.create({
+          message:"Información actualizada!",
+          duration:3000
+        });
+        toast.present();
+        this.params.get('usuario').telefonos= this.usuario.telefonos;
+        this.viewCtrl.dismiss({success:true});
+      },
+      err => {
+        this.util.hideLoading();
+        const toast =this.toastCtrl.create({
+          message:"Se produjo un error al actualizar los datos",
+          duration:3000
+        });
+        toast.present();
+      }
+    );
+  }
+
+
+  putUsuario(){
+    return this.http.put(Config.heroku_backend_url+'usuarios/'+this.usuario.id, {telefonos:this.usuario.telefonos, email:this.usuario.email});
+  }
+
+  cerrar(){
+    this.viewCtrl.dismiss({success:false});
+  }
+
 
 }

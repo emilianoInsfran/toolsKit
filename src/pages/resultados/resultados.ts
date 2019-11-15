@@ -6,7 +6,7 @@ import { MyFilterPipe } from '../../app/order.pipe';
 import { HttpClient } from '@angular/common/http';
 
 import { Config } from '../../config';
-import { UserPage } from '../user/user';
+import { HerramientaPage } from '../herramienta/herramienta';
 
 /**
  * Generated class for the ResultadosPage page.
@@ -94,9 +94,10 @@ export class ResultadosPage {
     this.order = 'number'
   }
 
-  gotoPerfil(data) {
+  gotoHerramienta(data) {
     console.log(data);
-    this.navCtrl.push(UserPage,{dataService: data});
+    //this.navCtrl.push(HerramientaPage,{herrmaienta: data});
+    this.navCtrl.setRoot( HerramientaPage ,{herramienta: data});
   }
 
 

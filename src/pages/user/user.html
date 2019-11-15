@@ -24,12 +24,12 @@
               <p>Email: {{userGoogle.email}}</p>
           </button>
           <button ion-item >
-              <p>DNI : {{user.documento}}</p>
+              <p>{{getTipoDocumento(user.documento.tipo)}}: {{user.documento.numero}}</p>
           </button>  
         </ion-list>
       </ion-card-content>
       <ion-item>
-        <button ion-button icon-start clear item-end>
+        <button ion-button icon-start clear item-end (click)="editarInfoUsuario()">
           <ion-icon name="create"></ion-icon>
           Editar
         </button>
@@ -75,18 +75,18 @@
         <ion-card-content>
           <ion-card-title>Tel&eacute;fonos</ion-card-title>
           <ion-list inset>
-            <ion-item-sliding *ngFor="let t of user.telefonos"  >
+            <ion-item-sliding *ngFor="let t of user.telefonos; let i = index"  >
               <ion-item>
                 <button ion-item >
-                    <p>{{t.numero}}</p>
+                    <p>{{getTipoTelefono(t.tipo)}} {{t.numero}}</p>
                 </button>
               </ion-item>
               <ion-item-options side="right">
-                <button ion-button small color="secondary" (click)="editarTelefono(d)">
+                <button ion-button small color="secondary" (click)="editarTelefono(i)">
                   <ion-icon name="create"></ion-icon>
                   Editar
                 </button>
-                <button ion-button small color="danger" (click)="eliminarTelefono(d)">
+                <button ion-button small color="danger" (click)="eliminarTelefono(i)">
                   <ion-icon name="trash"></ion-icon>
                   Eliminar
                 </button>

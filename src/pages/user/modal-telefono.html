@@ -1,0 +1,24 @@
+
+<ion-content  class="contenedor">
+    <ion-card >
+        <ion-card-content>
+            <form action="">
+                <label for="tipo">Tipo tel&eacute;fono</label>
+                <select  id="tipo" [(ngModel)]="usuario.telefonos[index].tipo" name="tipo" >
+                    <option *ngFor="let t of tipos" [value]="t.id">{{t.descripcion}}</option>
+                </select>
+
+                <label for="numero">N&uacute;mero tel&eacute;fono</label>
+                <input id="numero" type="text" [(ngModel)]="usuario.telefonos[index].numero" name="numero" >
+            </form>
+        </ion-card-content>
+    </ion-card>
+    <ion-row>
+        <ion-col>
+            <button ngClass="login" ion-button color="light" block (click)="cerrar()">Cancelar</button>
+        </ion-col>
+        <ion-col >
+            <button ngClass="login" ion-button block (click)="actualizarUsuario(index)">Actualizar</button>
+        </ion-col>
+    </ion-row>
+</ion-content>

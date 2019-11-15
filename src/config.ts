@@ -10,6 +10,16 @@ export class Config {
   };
 
   public  static ZONAS = ["El Jagüel", "Monte Grande", "Ezeiza", "Tristán Suárez", "La Unión", "Avellaneda"];
+  public  static TIPOS_DOCUMENTO = [
+    {id:1, descripcion:"DNI", longitud:8},
+    {id:2, descripcion:"PASAPORTE"},
+    {id:3, descripcion:"OTRO"}
+  ];
+
+  public  static TIPOS_TELEFONO = [
+    {id:1, descripcion:"CELULAR", longitud:10},
+    {id:2, descripcion:"FIJO", longitud:8}
+  ];
 
   public static WEB_CLIENT_ID = '648889677926-5bqvt18lsep5epkha91sdi9tvq38e5go.apps.googleusercontent.com';
   public static heroku_backend_url = 'https://herramientas-backend.herokuapp.com/';
