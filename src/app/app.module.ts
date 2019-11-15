@@ -11,13 +11,13 @@ import { ReputationPage } from '../pages/reputation/reputation';
 import { AddQualifyPage } from '../pages/addQualify/addQualify';
 import { UserPage, ModalDomicilio , ModalUsuario, ModalTelefono} from '../pages/user/user';
 import { AltaServicePage } from '../pages/alta-service/alta-service';
+import { HerramientaPage } from '../pages/herramienta/herramienta';
 
 import { ResultadosPage } from '../pages/resultados/resultados';
 import { OrderModule } from 'ngx-order-pipe';
 import { MyFilterPipe } from './order.pipe';
 
 import { GooglePlus } from '@ionic-native/google-plus';
-//import { NativeStorage } from '@ionic-native/native-storage';
 import { IonicStorageModule } from '@ionic/storage';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -43,7 +43,8 @@ import { StarRatingModule } from 'ionic3-star-rating';
     ModalUsuario,
     AltaServicePage,
     ReputationPage,
-    AddQualifyPage
+    AddQualifyPage,
+    HerramientaPage
   ],
   imports: [
     BrowserModule,
@@ -66,7 +67,8 @@ import { StarRatingModule } from 'ionic3-star-rating';
     UserPage,
     AltaServicePage,
     ReputationPage,
-    AddQualifyPage
+    AddQualifyPage,
+    HerramientaPage
   ],
   providers: [
     StatusBar,

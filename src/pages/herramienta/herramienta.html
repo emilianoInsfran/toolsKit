@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-navbar hideBackButton>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title></ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content  class="contenedor">
+  <h2>{{herramienta.nombre}}</h2>
+  <ion-row >
+    <ion-slides pager class="slide-container" >
+      <ion-slide *ngFor="let i of herramienta.imagenes" >
+        <img [src]="i" class="slide-image"/>
+      </ion-slide>
+    </ion-slides>
+  </ion-row>
+  <h4>Precio por dia: {{herramienta.precio}}</h4>
+  <p>{{herramienta.descripcion}}</p>
+  
+  
+  
+  
+</ion-content>
