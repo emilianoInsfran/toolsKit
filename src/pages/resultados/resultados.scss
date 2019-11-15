@@ -2,7 +2,7 @@ page-resultados {
     .contenedor{
         margin: 10px;
            padding: 10px;
-           background: rgb(235, 124, 80);
+           background-color: #f18117;
            border:1 px solid rgb(10, 10, 10);
            align-content: center;
     }
@@ -14,11 +14,11 @@ page-resultados {
             height: 40px;
             padding-top: 12px;
             margin: 5px 0px;
-            font-size: 15px;
+            font-size: 18px;
         }
 
         .linea {
-            border-right: 1px solid rgb(59, 58, 58);
+            border-right: 1px solid rgb(12, 12, 12);
         }
     }
 
@@ -84,7 +84,7 @@ page-resultados {
     }
 
     .filtro {
-        background-color: white;
+        background-color: #f18117;
         height: 100%;
         width: 100%;
         position: absolute;
@@ -115,6 +115,7 @@ page-resultados {
             border-radius: 20px;
             text-align: center;
             padding-left: 20px;
+            background: blanchedalmond;
         }
     }
 }

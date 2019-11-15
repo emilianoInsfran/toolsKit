@@ -8,6 +8,7 @@
 </ion-header>
 
 <ion-content  class="contenedor">
+  <div class="div">
   <h2>{{herramienta.nombre}}</h2>
   <ion-row >
     <ion-slides pager class="slide-container" >
@@ -19,7 +20,7 @@
   <h4>Precio por dia: {{herramienta.precio}}</h4>
   <p>{{herramienta.descripcion}}</p>
 
-  <ionic3-star-rating
+  <ionic3-star-rating 
     activeIcon = "ios-star"
     defaultIcon = "ios-star-outline"
     activeColor = "#488aff" 
@@ -31,6 +32,6 @@
   </ionic3-star-rating><span>{{opiniones}} opiniones</span>
   
   
-  
+  </div>
   
 </ion-content>
