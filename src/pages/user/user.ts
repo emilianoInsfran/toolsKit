@@ -117,7 +117,6 @@ export class UserPage {
   }
 
   verDomicilio(idDomicilio){
-    debugger;
     this.domicilios.map(domicilio=>{
       if(domicilio.id == idDomicilio){
         this.currentDomicilio = domicilio;
@@ -134,7 +133,6 @@ export class UserPage {
   }
 
   editarDomicilio(idDomicilio){
-    debugger;
     this.domicilios.map(domicilio=>{
       if(domicilio.id == idDomicilio){
         this.currentDomicilio = domicilio;
@@ -151,7 +149,6 @@ export class UserPage {
   }
 
   eliminarDomicilio(idDomicilio){
-    debugger;
     this.domicilios.map(domicilio=>{
       if(domicilio.id == idDomicilio){
         this.currentDomicilio = domicilio;
@@ -207,7 +204,6 @@ export class UserPage {
   }
 
   crearDomicilio(){
-    debugger;
     
     let contactModal = this.modalCtrl.create(ModalDomicilio, {user:this.user, action:"crear"});
 

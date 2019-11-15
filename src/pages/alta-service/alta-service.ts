@@ -138,7 +138,6 @@ export class AltaServicePage {
   loadUsuario(){
     this.storage.get('backend_user')
     .then(usuario => {
-      debugger;
       if(this.util.isEmpty(usuario)){
         this.navCtrl.setRoot( LoginPage );ResultadosPage
         const toast =this.toastCtrl.create({
@@ -157,7 +156,6 @@ export class AltaServicePage {
   }
 
   loadDomicilio(){
-    debugger;
     this.http.get(Config.heroku_backend_url+'usuarios/' + this.usuario.id + "/domicilios")
     .subscribe(
       domicilios => {
@@ -391,7 +389,6 @@ export class AltaServicePage {
   }
 
   removeImage(nombre){
-    debugger;
     for( var i = 0; i < this.imagenes.length; i++){ 
       if ( this.imagenes[i].nombre == nombre) {
         this.imagenes.splice(i, 1);

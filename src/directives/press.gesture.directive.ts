@@ -14,7 +14,6 @@ export class PressDirective implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    debugger;
     this.pressGesture = new Gesture(this.el, {
         recognizers: [
           [Hammer.Tap, {taps: 2}]
