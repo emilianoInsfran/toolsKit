@@ -278,12 +278,12 @@ export class ModalDomicilio {
     
     
     this.domicilio={
-      id:(params.get('action') == "editar")?   params.get('domicilio').id:    null,
-      usuario:(params.get('action') == "editar")?    params.get('domicilio').usuario:   this.params.get('user').id,
-      calle: (params.get('action') == "editar")?  params.get('domicilio').calle   : null,
-      nro: (params.get('action') == "editar")?  params.get('domicilio').nro:  null,
-      zona:(params.get('action') == "editar")? params.get('domicilio').zona :null,
-      codPostal: (params.get('action') == "editar")? params.get('domicilio').codPostal: null
+      id:(params.get('action') == "editar" || params.get('action') == "ver")?   params.get('domicilio').id:    null,
+      usuario:(params.get('action') == "editar" || params.get('action') == "ver")?    params.get('domicilio').usuario:   this.params.get('user').id,
+      calle: (params.get('action') == "editar" || params.get('action') == "ver")?  params.get('domicilio').calle   : null,
+      nro: (params.get('action') == "editar" || params.get('action') == "ver")?  params.get('domicilio').nro:  null,
+      zona:(params.get('action') == "editar" || params.get('action') == "ver")? params.get('domicilio').zona :null,
+      codPostal: (params.get('action') == "editar" || params.get('action') == "ver")? params.get('domicilio').codPostal: null
     }
     
     this.zonas= Config.ZONAS;

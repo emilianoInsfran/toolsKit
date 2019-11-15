@@ -50,6 +50,10 @@ page-user , modal-domicilio{
             border: 1px solid gray;
         }
 
+        select:disabled{
+            background-color:#ebebe4;
+        }
+
         form {
             margin-top: 15%;
         }
