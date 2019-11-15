@@ -1,4 +1,11 @@
 page-addQualify{
+    .contenedor{
+        margin: 10px;
+        padding: 10px;
+        background: rgb(236, 158, 113);
+        border:1 px solid rgb(10, 10, 10);
+        align-content: center;
+    }
 
 .contenedor-herramientas {
             padding: 5px;
@@ -6,6 +13,7 @@ page-addQualify{
             border-radius: 4px;
             margin-bottom: 8px;
             margin-top: 4px;
+            width: 100%;
 
             .img {
                 width: 100%;
@@ -40,8 +48,9 @@ page-addQualify{
          .ec-stars-wrapper {
          	font-size: 0;
          	margin: auto;
-            width: 50%;
+            width: 100%;
             padding: 10px;
+            
          }
          .ec-stars-wrapper a {
             margin: 40px;
@@ -51,7 +60,8 @@ page-addQualify{
          	display: inline-block;
          	font-size: 32px;
          	font-size: 2rem;
-         	color: #888;
+             color: #888;
+             
          }
 
          .ec-stars-wrapper:hover a {

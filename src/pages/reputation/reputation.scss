@@ -1,4 +1,15 @@
 page-reputation {
+    .contenedor{
+        background: url(https://img.freepik.com/vector-gratis/suministros-herramientas-construccion-constructor-construccion-viviendas_38901-60.jpg?size=338&ext=jpg);
+
+    }
+    .div{
+        margin: 10px;
+           padding: 10px;
+           background-color: #7e726d;
+           border:1 px solid rgb(10, 10, 10);
+           align-content: center;
+    }
             padding: 5px;
             border-bottom: 1px solid #b0b0b0;
             border-radius: 4px;
@@ -17,16 +28,19 @@ page-reputation {
                 .nombre {
                     font-size: 1.5em;
                     font-weight: 400;
+                    background: bisque;
                 }
 
                 p {
                     margin: 0;
                     margin-bottom: 3px;
                     padding:0;
+                    background: bisque;
                 }
                 span {
                     font-size: 1.5em;
                     color: #005a00;
+                    background: bisque;
                 }
             }
          }

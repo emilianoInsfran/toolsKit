@@ -1,21 +1,30 @@
 page-resultados {
+    .contenedor{
+        margin: 10px;
+           padding: 10px;
+           background: rgb(235, 124, 80);
+           border:1 px solid rgb(10, 10, 10);
+           align-content: center;
+    }
     .filtros{ 
         .btn-ordenar {
             text-align: center;
-            color: #2196F3;
+            color: rgb(22, 31, 165);
             width: 100%;
             height: 40px;
             padding-top: 12px;
             margin: 5px 0px;
+            font-size: 15px;
         }
 
         .linea {
-            border-right: 1px solid grey;
+            border-right: 1px solid rgb(59, 58, 58);
         }
     }
 
     .box-search {
         position: relative;
+        border-radius: 50%;
 
         input {
             width: 100%;
@@ -34,6 +43,7 @@ page-resultados {
             background-color: white;
             position: absolute;
             top: 0;
+            
         }
     }
 
@@ -52,6 +62,7 @@ page-resultados {
                 background-repeat: no-repeat;
                 background-position: center center;
                 background-color: white;
+                border-radius: 50%;
             }
             .informacion {
                 .nombre {
