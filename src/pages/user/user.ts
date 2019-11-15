@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams , LoadingController,  ToastController, ModalController, ViewController, AlertController  } from 'ionic-angular';
-
 import { AuthenticatorService } from '../../providers/authenticatorService';
 import { Storage } from '@ionic/storage';
 import { HttpClient } from '@angular/common/http';
