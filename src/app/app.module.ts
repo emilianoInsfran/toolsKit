@@ -12,6 +12,8 @@ import { AddQualifyPage } from '../pages/addQualify/addQualify';
 import { UserPage, ModalDomicilio , ModalUsuario, ModalTelefono} from '../pages/user/user';
 import { AltaServicePage } from '../pages/alta-service/alta-service';
 import { HerramientaPage } from '../pages/herramienta/herramienta';
+import { ModalContactoPage } from '../pages/modal-contacto/modal-contacto';
+
 
 import { ResultadosPage } from '../pages/resultados/resultados';
 import { OrderModule } from 'ngx-order-pipe';
@@ -44,7 +46,8 @@ import { StarRatingModule } from 'ionic3-star-rating';
     AltaServicePage,
     ReputationPage,
     AddQualifyPage,
-    HerramientaPage
+    HerramientaPage,
+    ModalContactoPage
   ],
   imports: [
     BrowserModule,
@@ -68,7 +71,8 @@ import { StarRatingModule } from 'ionic3-star-rating';
     AltaServicePage,
     ReputationPage,
     AddQualifyPage,
-    HerramientaPage
+    HerramientaPage,
+    ModalContactoPage
   ],
   providers: [
     StatusBar,

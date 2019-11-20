@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams , LoadingController} from 'ionic-angular';
+import { IonicPage, NavController, NavParams , LoadingController, ModalController} from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { HttpClient } from '@angular/common/http';
 import { Config } from '../../config';
 import { UtilService } from  '../../providers/utilService';
+import { ModalContactoPage } from '../modal-contacto/modal-contacto';
+
 
 
 @IonicPage()
@@ -23,7 +25,8 @@ export class HerramientaPage {
     private storage: Storage,
     public loadingCtrl: LoadingController,
     private http: HttpClient,
-    public util: UtilService
+    public util: UtilService,
+    public modalcontroller: ModalController
     )
     {
     this.init();
@@ -59,6 +62,10 @@ export class HerramientaPage {
 
   loadUsuario(){
     return this.storage.get('backend_user');
+  }
+  abrirModal(){
+    let modal =this.modalcontroller.create(ModalContactoPage);
+    modal.present();
   }
 
 }

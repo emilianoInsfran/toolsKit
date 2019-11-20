@@ -1,0 +1,36 @@
+<!--
+  Generated template for the ModalContactoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <ion-navbar hideBackButton>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>Completar Formulario</ion-title>
+    </ion-navbar>
+  </ion-header>
+
+<ion-content padding>
+    <ion-content padding class="contenedor">
+         
+        <ion-list class="formulario">
+           
+          <ion-item class="item">
+            <ion-label class="label">Usuario solicitante </ion-label>
+            <ion-input class="input" type="text" [(ngModel)]="usuario" name="nombre" ></ion-input>
+          </ion-item>
+          <ion-item class="item">
+            <ion-label class="label">Forma de contacto</ion-label>
+            <ion-input type="text" [(ngModel)]="contacto" name="cont" ></ion-input>
+          </ion-item>                          
+                            
+         <div>
+          <button class="buton" ion-button  block (click)="contactoUser()" >Guardar solicitud</button>
+         </div>
+        </ion-list>
+      </ion-content>
+
+</ion-content>

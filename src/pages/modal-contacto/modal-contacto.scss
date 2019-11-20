@@ -1,0 +1,75 @@
+page-modal-contacto {
+    .contenedor{
+        margin: 0;
+        padding: 0;
+        background: url(https://img.freepik.com/vector-gratis/suministros-herramientas-construccion-constructor-construccion-viviendas_38901-60.jpg?size=338&ext=jpg);
+        width: 100%;
+        height: 100%;
+    }
+       .formulario{
+           
+           
+           margin: 10px;
+           padding: 10px;
+           background-color: #f18117;
+           border:1 px solid rgb(10, 10, 10);
+           align-content: center;
+        }
+        .label{
+            font-size: 18px;
+            font-weight: bold;
+            display: block;
+            padding:5px ;
+            width: 100%;
+        }
+        .input  {
+            font-size: 12px;
+            margin-bottom: 1px;
+            width: 100%;
+            padding: 5px;
+            box-sizing: border-box;
+            border: 1px solid rgb(240, 126, 126);
+            background: gainsboro;
+            
+        }
+       
+        .item{
+            padding: 1px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            border: 1px solid rgb(19, 17, 17);
+            background: rgb(230, 223, 212);
+        }
+
+        .input:focus{
+            border: 1px solid rgb(228, 204, 182);
+        }
+        button{
+            margin-bottom:10px ;
+            background: #1668C4;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            margin: 10px;
+
+        }
+        .button:hover{
+            background:rgb(8, 181, 224);
+            
+        }
+        
+
+           
+        }
+        
+
+        
+        
+        
+    
+       
+
+
+
+
+
