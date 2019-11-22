@@ -30,6 +30,12 @@ page-resultados {
     .box-search {
         position: relative;
         border-radius: 50%;
+        position: relative;
+        border-radius: 50%;
+        max-width: 300px;
+        width: 100%;
+        margin: auto;
+        margin-top: 5%;
 
         input {
             width: 100%;
@@ -37,6 +43,7 @@ page-resultados {
             height: 40px;
             border: none;
             border-bottom: 1px solid grey;
+            border-radius: 10px;
         }
         .search {
             background-image: url('../../assets/imgs/lupa.png');

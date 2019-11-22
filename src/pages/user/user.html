@@ -1,13 +1,14 @@
 <ion-header>
     <ion-navbar hideBackButton>
       <button ion-button menuToggle >
-        <ion-icon name="menu">Perfil</ion-icon>
+        <ion-icon name="menu"></ion-icon>
       </button>
+      <ion-title>Perfil</ion-title>
     </ion-navbar>
   </ion-header>
-  
+
   <ion-content *ngIf='userReady' class="contenedor">
-    
+
     <ion-card>
       <ion-card-content>
         <img [src]="userGoogle.picture"/>
@@ -25,7 +26,7 @@
           </button>
           <button ion-item >
               <p>{{getTipoDocumento(user.documento.tipo)}}: {{user.documento.numero}}</p>
-          </button>  
+          </button>
         </ion-list>
       </ion-card-content>
       <ion-item>
@@ -35,7 +36,7 @@
         </button>
       </ion-item>
     </ion-card>
-  
+
     <ion-card class="card">
       <ion-card-content>
         <ion-card-title>Domicilios</ion-card-title>
@@ -59,7 +60,7 @@
                 <ion-icon name="trash"></ion-icon>
                 Eliminar
               </button>
-            </ion-item-options>  
+            </ion-item-options>
           </ion-item-sliding>
         </ion-list>
       </ion-card-content>
@@ -90,7 +91,7 @@
                   <ion-icon name="trash"></ion-icon>
                   Eliminar
                 </button>
-              </ion-item-options>  
+              </ion-item-options>
             </ion-item-sliding>
           </ion-list>
         </ion-card-content>
@@ -108,7 +109,7 @@
         <ionic3-star-rating class="star"
           activeIcon = "ios-star"
           defaultIcon = "ios-star-outline"
-          activeColor = "#488aff" 
+          activeColor = "#488aff"
           defaultColor = "#f4f4f4"
           readonly="true"
           halfStar="true"
@@ -123,7 +124,7 @@
           <ionic3-star-rating class="star"
             activeIcon = "ios-star"
             defaultIcon = "ios-star-outline"
-            activeColor = "#488aff" 
+            activeColor = "#488aff"
             defaultColor = "#f4f4f4"
             readonly="true"
             halfStar="true"
