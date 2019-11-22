@@ -28,20 +28,20 @@ page-resultados {
     }
 
     .box-search {
-        position: center;
+        position: relative;
         border-radius: 50%;
 
         input {
-            width: 68%;
-            margin-left: 60px;
+            width: 100%;
+            padding-left: 40px;
             height: 40px;
             border: none;
             border-bottom: 1px solid grey;
         }
         .search {
             background-image: url('../../assets/imgs/lupa.png');
-            width: 20px;
-            height: 20px;
+            width: 26px;
+            height: 26px;
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center center;
@@ -49,8 +49,7 @@ page-resultados {
             position: absolute;
             top: 5px;
             /* padding-left: 20px; */
-            margin-left: 80px;
-            margin-top: 20px;
+            margin-left: 10px;
         }
     }
 
@@ -100,6 +99,7 @@ page-resultados {
 
     .filtro {
       background: linear-gradient(0deg, rgba(201,201,169,0.36318277310924374) 0%, rgba(242,181,133,0.6152836134453781) 29%, rgba(217,113,5,1) 100%);
+        background-color: #f18117;
         height: 100%;
         width: 100%;
         position: absolute;
