@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar hideBackButton>
-    <button ion-button menuToggle>
+    <button class="btn-menu" ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Resultados</ion-title>
@@ -16,10 +16,10 @@
   <div class="filtros">
       <ion-row >
           <ion-col col-6>
-           <div class="btn-ordenar linea" (click)="mostrarFiltro('ordenar')"> <ion-icon ios="ios-repeat" md="md-repeat"></ion-icon>Ordenar</div> 
+           <div class="btn-ordenar linea" (click)="mostrarFiltro('ordenar')"> <ion-icon ios="ios-repeat" md="md-repeat"></ion-icon>Ordenar</div>
           </ion-col>
           <ion-col col-6 >
-           <div class="btn-ordenar" (click)="mostrarFiltro('filtrar' )">  <ion-icon ios="ios-options" md="md-options"></ion-icon> Filtrar</div> 
+           <div class="btn-ordenar" (click)="mostrarFiltro('filtrar' )">  <ion-icon ios="ios-options" md="md-options"></ion-icon> Filtrar</div>
           </ion-col>
     </ion-row>
   </div>
