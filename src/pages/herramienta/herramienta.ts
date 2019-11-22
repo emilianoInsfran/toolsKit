@@ -43,7 +43,8 @@ export class HerramientaPage {
     .then(usuario=>{
       this.usuario = usuario;
     })
-    .then(()=>this.loadDetalleHerramienta(this.navParams.get('herramienta').id));
+    .then(()=>this.loadDetalleHerramienta(this.navParams.get('herramienta').id))
+    .then(()=>this.util.hideLoading());
   }
 
   loadDetalleHerramienta(idHerramienta){
@@ -64,8 +65,9 @@ export class HerramientaPage {
     return this.storage.get('backend_user');
   }
   abrirModal(){
-    let modal =this.modalcontroller.create(ModalContactoPage);
-    modal.present();
+    //let modal =this.modalcontroller.create(ModalContactoPage);
+    //modal.present();
+    this.navCtrl.push(ModalContactoPage,{herramienta: this.herramienta, usuario: this.usuario});
   }
 
 }

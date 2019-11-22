@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar hideBackButton>
+  <ion-navbar >
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -31,6 +31,22 @@
     fontSize = "28px">
   </ionic3-star-rating><span>{{opiniones}} opiniones</span>
   <br>
+
+  <ion-card *ngFor="let r of herramienta.reputacion">
+      <ion-card-content>
+        <p>{{r.comentario}}</p>
+        <ionic3-star-rating 
+          activeIcon = "ios-star"
+          defaultIcon = "ios-star-outline"
+          activeColor = "#488aff" 
+          defaultColor = "#f4f4f4"
+          readonly="true"
+          halfStar="true"
+          rating="{{r.puntaje}}"
+          fontSize = "18px">
+        </ionic3-star-rating>
+      </ion-card-content>
+    </ion-card>
   
    <button ion-button  (click)="abrirModal()" >Alquilar</button>
    </div>

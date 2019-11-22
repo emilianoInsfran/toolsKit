@@ -5,7 +5,7 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-    <ion-navbar hideBackButton>
+    <ion-navbar >
       <button ion-button menuToggle>
         <ion-icon name="menu"></ion-icon>
       </button>
@@ -19,16 +19,25 @@
         <ion-list class="formulario">
            
           <ion-item class="item">
-            <ion-label class="label">Usuario solicitante </ion-label>
-            <ion-input class="input" type="text" [(ngModel)]="usuario" name="nombre" ></ion-input>
+            <ion-label class="label" >Precio x dia</ion-label>
+            <ion-input class="input" type="text" [(ngModel)]="precioPorDia" name="precioPorDia" readonly></ion-input>
+          </ion-item>     
+          <ion-item>
+            <ion-label>Cantidad {{cantidad}}</ion-label>
+            <ion-range min="1" max="{{cantidadMax}}" step="1" snaps="true"  [(ngModel)]="cantidad" name="cantidad" (ionBlur)="onChangeDias()"></ion-range>
           </ion-item>
           <ion-item class="item">
-            <ion-label class="label">Forma de contacto</ion-label>
-            <ion-input type="text" [(ngModel)]="contacto" name="cont" ></ion-input>
-          </ion-item>                          
+            <ion-label class="label" floating>Dias</ion-label>
+            <ion-input type="number" [(ngModel)]="dias" name="dias" min="1" (change)="onChangeDias()"></ion-input>
+          </ion-item>
+          <ion-item class="item">
+            <ion-label class="label" >Precio Total </ion-label>
+            <ion-input class="input" type="text" [(ngModel)]="precioTotal" name="precioTotal" readonly></ion-input>
+          </ion-item>  
+
                             
          <div>
-          <button class="buton" ion-button  block (click)="contactoUser()" >Guardar solicitud</button>
+          <button class="buton" ion-button  block (click)="contactoUser()" >Enviar solicitud</button>
          </div>
         </ion-list>
       </ion-content>

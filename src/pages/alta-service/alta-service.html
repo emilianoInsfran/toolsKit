@@ -18,19 +18,19 @@
   <ion-list class="formulario">
      <h2>Publicar Herramienta</h2>
     <ion-item class="item">
-      <ion-label class="label">Nombre </ion-label>
+      <ion-label class="label" floating>Nombre </ion-label>
       <ion-input class="input" type="text" [(ngModel)]="herramienta.nombre" name="nombre" ></ion-input>
     </ion-item>
     <ion-item class="item">
-      <ion-label class="label">Cantidad</ion-label>
+      <ion-label class="label" floating>Cantidad</ion-label>
       <ion-input type="number" [(ngModel)]="herramienta.cantidad" name="cantidad" ></ion-input>
     </ion-item>
     <ion-item class="item">
-        <ion-label class="label">Precio</ion-label>
+        <ion-label class="label" floating>Precio por dia</ion-label>
         <ion-input type="number" [(ngModel)]="herramienta.precio" name="precio" ></ion-input>
       </ion-item>
     <ion-item class="item">
-      <ion-label class="label">Imagen</ion-label>
+      <ion-label class="label" >Imagen</ion-label>
       <ion-input type="file" [(ngModel)]="imagenesTMP" name="imagenesTMP" (change)="onFileSelectChange($event)" ></ion-input>
     </ion-item>
     <ion-slides pager class="slide-container" parallax=true>
@@ -42,13 +42,13 @@
       </ion-slide>
     </ion-slides>
     <ion-item class="item" >
-      <ion-label class="label">Categoria</ion-label>
+      <ion-label class="label" floating>Categoria</ion-label>
       <ion-select class="select" [(ngModel)]="herramienta.tipoHerramienta" name="tipoHerramienta" cancelText="Cancelar" okText="Seleccionar">
         <ion-option *ngFor="let t of tiposHerramienta" [value]="t.id">{{t.nombre}}</ion-option>
       </ion-select>
     </ion-item>
     <ion-item class="item" >
-      <ion-label class="label">Domicilio</ion-label>
+      <ion-label class="label" floating>Domicilio</ion-label>
       <ion-select class="select" [(ngModel)]="domicilio" name="domicilio" cancelText="Cancelar" okText="Seleccionar" (ionChange)="onChangeDomicilio()">
         <ion-option *ngFor="let d of domicilios" [value]="d.id">{{d.calle}} {{d.nro}}</ion-option>
         <ion-option value="Otro">Otro</ion-option>
@@ -56,26 +56,26 @@
     </ion-item>
     <span [hidden]="hideCustomDomicilioFields">
       <ion-item class="item" >
-        <ion-label class="label">Calle</ion-label>
+        <ion-label class="label" floating>Calle</ion-label>
         <ion-input type="text" [(ngModel)]="customDomicilio.calle" name="calle" ></ion-input>
       </ion-item>
       <ion-item class="item" >
-        <ion-label class="label">N&uacute;mero</ion-label>
+        <ion-label class="label" floating>N&uacute;mero</ion-label>
         <ion-input type="number" [(ngModel)]="customDomicilio.nro" name="nro" ></ion-input>
       </ion-item>
       <ion-item class="item" >
-        <ion-label class="label">C&oacute;digo postal</ion-label>
+        <ion-label class="label" floating>C&oacute;digo postal</ion-label>
         <ion-input type="text" [(ngModel)]="customDomicilio.codPostal" name="codPostal" ></ion-input>
       </ion-item>
       <ion-item class="item" >
-        <ion-label class="label">Zona</ion-label>
+        <ion-label class="label" floating>Zona</ion-label>
         <ion-select class="select" [(ngModel)]="customDomicilio.zona" name="zona" cancelText="Cancelar" okText="Seleccionar" >
           <ion-option *ngFor="let z of zonas" [value]="z">{{z}}</ion-option>
         </ion-select>
       </ion-item>
     </span>
     <ion-item class="item"> 
-        <ion-label class="label">Descripción</ion-label>
+        <ion-label class="label" floating>Descripción</ion-label>
         <ion-textarea class="textarea" clearOnEdit="true" [(ngModel)]="herramienta.descripcion" name="descripcion" ></ion-textarea>
       </ion-item>
    </ion-list>

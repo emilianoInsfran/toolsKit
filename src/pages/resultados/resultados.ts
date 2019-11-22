@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { Config } from '../../config';
 import { HerramientaPage } from '../herramienta/herramienta';
+import { UtilService } from  '../../providers/utilService';
 
 /**
  * Generated class for the ResultadosPage page.
@@ -36,7 +37,8 @@ export class ResultadosPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private http: HttpClient) {
+    private http: HttpClient,
+    public util: UtilService) {
   }
 
   ionViewDidLoad() {
@@ -96,8 +98,9 @@ export class ResultadosPage {
 
   gotoHerramienta(data) {
     console.log(data);
-    //this.navCtrl.push(HerramientaPage,{herrmaienta: data});
-    this.navCtrl.setRoot( HerramientaPage ,{herramienta: data});
+    this.util.showLoading("Cargando");
+    this.navCtrl.push(HerramientaPage,{herramienta: data});
+    //this.navCtrl.setRoot( HerramientaPage ,{herramienta: data});
   }
 
 
