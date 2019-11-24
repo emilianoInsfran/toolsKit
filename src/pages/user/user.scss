@@ -1,11 +1,22 @@
 page-user , modal-domicilio, modal-usuario, modal-telefono{
+  .bar-button-default-md, .bar-button-clear-md-default, .bar-button-md-default {
+    position: absolute;
+  }
+    ion-title {
+      text-align: center;
+    }
     .contenedor{
+
         background: url(https://img.freepik.com/vector-gratis/suministros-herramientas-construccion-constructor-construccion-viviendas_38901-60.jpg?size=338&ext=jpg);
 
         padding: 10px;
-        
+
         text-align: center;
-    
+
+        .fixed-content {
+          background: linear-gradient(0deg, rgba(201,201,169,0.36318277310924374) 0%, rgba(242,181,133,0.6152836134453781) 29%, rgba(217,113,5,1) 100%);
+        }
+
         button.login {
             height: 50px;
             max-width: 320px;
@@ -28,14 +39,14 @@ page-user , modal-domicilio, modal-usuario, modal-telefono{
             /*  */
             background-position: center;
         }
-        
+
         a {
             height: 80px;
             width: 40%;
             display: inline-block;
             margin-top: 40px;
         }
-        
+
         .comentarios {
             padding: 5px;
             border: 1px solid gray;
@@ -68,19 +79,19 @@ page-user , modal-domicilio, modal-usuario, modal-telefono{
             background-color: #f18117;
             background: gainsboro;
 
-           
+
         }
         .card{
             padding: 10px;
             box-sizing: border-box;
-            background-color: #f18117;
         }
-                
-            
-        
-    
-
+        .card-md {
+          background-color: #ffffffbf;
+        }
+        .card-title-md {
+          font-size: 1.6em;
+        }
     }
-    
+
 
 }

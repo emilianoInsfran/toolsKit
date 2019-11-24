@@ -1,4 +1,14 @@
 page-alta-service {
+    .bar-button-default-md, .bar-button-clear-md-default, .bar-button-md-default {
+      position: absolute;
+    }
+    ion-title {
+      text-align: center;
+    }
+
+    .scroll-content {
+      padding: 0px;
+    }
     .contenedor{
         margin: 0;
         padding: 0;
@@ -7,11 +17,9 @@ page-alta-service {
         height: 100%;
     }
        .formulario{
-           
-           
-           margin: 10px;
            padding: 10px;
-           background-color: #f18117;
+           background: linear-gradient(0deg, rgba(201,201,169,0.36318277310924374) 0%, rgba(242,181,133,0.6152836134453781) 29%, rgba(217,113,5,1) 100%);
+
            border:1 px solid rgb(10, 10, 10);
            align-content: center;
         }
@@ -30,7 +38,7 @@ page-alta-service {
             box-sizing: border-box;
             border: 1px solid rgb(240, 126, 126);
             background: gainsboro;
-            
+
         }
         .textarea2{
             resize: vertical;
@@ -45,8 +53,17 @@ page-alta-service {
             padding: 1px;
             margin-bottom: 10px;
             box-sizing: border-box;
-            border: 1px solid rgb(19, 17, 17);
+            border: 1px solid #c5c5c5;
             background: rgb(230, 223, 212);
+            border-radius: 10px;
+
+            .item-inner {
+                padding: 10px;
+            }
+        }
+        .input-cover {
+          border-radius: 10px;
+border: 1px solid #a0a0a0;
         }
 
         .input:focus , .textarea:focus{
@@ -63,7 +80,7 @@ page-alta-service {
         }
         .button:hover{
             background:rgb(8, 181, 224);
-            
+
         }
         .select{
             font-size: 14px;
@@ -74,7 +91,7 @@ page-alta-service {
             border: 1px solid rgb(240, 126, 126);
             background: gainsboro;
 
-           
+
         }
         h2{
             font-size: 20px;
@@ -86,17 +103,19 @@ page-alta-service {
         .slide-title {
             margin-top: 2.8rem;
         }
-    
+
         .slide-image {
             max-height: 200px;
             max-width: 100%;
             margin: 5px 0;
             margin-bottom: 10px;
         }
-    
+
         .slide-container {
             background-color: rgba(8, 8, 8, 0.74);
         }
 
-
+}
+ion-app.md [padding] .scroll-content {
+  padding: 0px !important;
 }

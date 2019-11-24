@@ -6,11 +6,19 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class MyFilterPipe implements PipeTransform {
     transform(items: any[], filter: Object): any {
+        let x=[]
+        for (let index = 0; index < items.length; index++) {
+            if(items[index].domicilio.zona!=undefined){
+                x.push(items[index]);
+            }
+        }
+
         if (!items || !filter) {
             return items;
         }
+        console.log(x)
         // filter items array, items which match and return true will be
         // kept, false will be filtered out
-        return items.filter(item => item.ubicacion.indexOf(filter) !== -1);
+        return x.filter(item =>  item.domicilio.zona.indexOf(filter) !== -1);
     }
 }

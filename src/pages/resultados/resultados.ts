@@ -31,7 +31,7 @@ export class ResultadosPage {
   ord:boolean =true;
   fil:boolean = true;
   myFilterPipe2: string;
-  order: string;
+  order: string; 
   ubicacionHerramienta;
 
   constructor(

@@ -6,6 +6,14 @@ page-herramienta {
 
          text-align: center;
 
+         a{
+           width: 100%;
+         }
+
+         .swiper-slide {
+           width: 100%!important;
+         }
+
          .login{
             height: 50px;
             max-width: 320px;
@@ -16,6 +24,13 @@ page-herramienta {
             color: white;
             border-radius: 20px;
             margin-bottom: 20px;
+         }
+
+         .btn-alquilar {
+            width: 100%;
+            margin-top: 26px;
+            margin-bottom: 5px;
+            color: white!important;
          }
 
          .slide-title {
@@ -32,10 +47,8 @@ page-herramienta {
             color: black;
          }
          .div{
-            
-           margin: 10px;
            padding: 10px;
-           background-color: #f18117;
+            background: linear-gradient(0deg, rgba(201,201,169,0.36318277310924374) 0%, rgba(242,181,133,0.6152836134453781) 29%, rgba(217,113,5,1) 100%);
            border:1 px solid rgb(10, 10, 10);
            align-content: center;
          }
@@ -45,7 +58,7 @@ page-herramienta {
             
          }
       
-         }
+      }
          
 
      }
