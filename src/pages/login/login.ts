@@ -56,35 +56,45 @@ export class LoginPage {
   }
 
   doGoogleLogin(){
-    let loading = this.loadingCtrl.create({
-      content: 'Por favor espere'
-    });
     this.authenticator.doOauthLogin("Google")
     .then((user) => {
-      this.storage.set('google_user', user).then(() =>this.doBackendLogin(user));
+      this.storage.set('google_user', user).then(() =>{
+        console.log("google_user: ", user)
+        this.doBackendLogin(user);
+      });
     }).catch((err) => {
-      console.error(err)
-      loading.dismiss();
+      console.error(err);
     });
   
   }
 
 
   doBackendLogin(user){
-      this.http.post(Config.heroku_backend_url+'usuarios' ,{email: user.email, accessToken: user.accessToken, nombre: user.nombre, apellido: user.apellido})
-      .subscribe(
-        res => {
-          this.storage.set('backend_user', res)
-          .then(()=>{
-            this.gotoPage()
-          })
-          .catch((err) => {
-            this.gotoPage()
-          })
-        },
-        err => {
-          console.log("Error occured");
-        }
-      );
+      let loading = this.loadingCtrl.create({
+        content: 'Por favor espere'
+      });
+      this.storage.get('fcmToken').then((fcmToken)=>{
+
+        this.http.post(Config.heroku_backend_url+'usuarios' ,{email: user.email, accessToken: user.accessToken, fcmToken: fcmToken, nombre: user.nombre, apellido: user.apellido})
+          .subscribe(
+            res => {
+              loading.dismiss();
+              this.storage.set('backend_user', res)
+              .then(()=>{
+                this.gotoPage()
+              })
+              .catch((err) => {
+                this.gotoPage()
+              })
+            },
+            err => {
+              console.log("Error occured");
+              loading.dismiss();
+            }
+          );
+
+      });
+
+      
     }
 }

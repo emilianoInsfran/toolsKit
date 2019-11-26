@@ -92,8 +92,9 @@ export class ModalContactoPage {
   postAlquiler(){
     
     return this.http.post(Config.heroku_backend_url+'alquileres', {
-      usuario:this.usuario.id,
+      cliente:this.usuario.id,
       herramienta:this.herramienta.id,
+      proveedor:this.herramienta.usuario.id,
       monto:this.precioTotal,
       dias:this.dias,
       cantidad:this.cantidad

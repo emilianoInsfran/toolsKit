@@ -81,6 +81,10 @@ export class UserPage {
       this.gotoPage() 
     }, err => {
       console.log(err);
+      this.storage.remove('google_user');
+      this.storage.remove('backend_user');
+      this.userReady = false;
+      this.gotoPage() 
     });
   }
 
