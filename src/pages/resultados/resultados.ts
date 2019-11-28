@@ -53,12 +53,12 @@ export class ResultadosPage {
     this.ubicacionHerramienta = Config.ZONAS;
   }
 
-  getConfigHerramientas(obj) {
-    return this.http.get(Config.heroku_backend_url+'herramientas?page=&limit=');
+  getConfigHerramientas(queryParams) {
+    return this.http.get(Config.heroku_backend_url+'herramientas'+queryParams);
   }
 
-  showConfig(obj) {
-    this.getConfigHerramientas(obj)
+  showConfig(queryParams) {
+    this.getConfigHerramientas(queryParams)
       .subscribe(herramientas => {
                 console.log('data:',herramientas);
                 this.obtenerHerramientas(herramientas);
@@ -83,11 +83,10 @@ export class ResultadosPage {
   }
 
   buscarHerramientas() {
-    let obj = {
-      herramienta: this.pedidoHerramienta
-    }
+    let nombreLike= "?nombreLike="+this.pedidoHerramienta;
+    
 
-    this.showConfig(obj)// le pasas ese parametro - leer linea 43 
+    this.showConfig(nombreLike)// le pasas ese parametro - leer linea 43 
   }
 
   //filtro seria por puntuación, precio, ubicacion
