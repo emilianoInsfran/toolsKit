@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-navbar hideBackButton>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Alquileres como proveedor</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="contenedor" padding >
+  <ion-tabs tabsPlacement="bottom">
+    <ion-tab [root]="tab1Root" [rootParams]="{usuario: usuario}" tabTitle="Pendientes" tabIcon="help-circle"></ion-tab>
+    <ion-tab [root]="tab2Root" [rootParams]="{usuario: usuario}" tabTitle="En Curso" tabIcon="construct"></ion-tab>
+    <ion-tab [root]="tab3Root" [rootParams]="{usuario: usuario}" tabTitle="Finalizados" tabIcon="alert"></ion-tab>
+  </ion-tabs>
+</ion-content>

@@ -34,8 +34,6 @@ export class HerramientaPage {
 
   ionViewDidLoad() {
     console.log("herr",this.navParams.get('herramienta'));
-    
-    
   }
 
   init(){

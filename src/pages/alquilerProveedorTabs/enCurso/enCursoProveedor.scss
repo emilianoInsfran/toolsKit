@@ -1,0 +1,144 @@
+page-enCursoProveedor {
+  .bar-button-default-md, .bar-button-clear-md-default, .bar-button-md-default {
+    position: absolute;
+  }
+
+    ion-title {
+      text-align: center;
+    }
+    .contenedor{
+      background: rgb(201,201,169);
+      background: linear-gradient(0deg, rgba(201,201,169,0.36318277310924374) 0%, rgba(242,181,133,0.6152836134453781) 29%, rgba(217,113,5,1) 100%);
+      border:1 px solid rgb(10, 10, 10);
+      align-content: center;
+    }
+    .filtros{ 
+        .btn-ordenar {
+            text-align: center;
+            color: #18798a;
+            width: 100%;
+            height: 40px;
+            padding-top: 12px;
+            margin: 5px 0px;
+            font-size: 18px;
+        }
+
+        .linea {
+            border-right: 1px solid rgb(12, 12, 12);
+        }
+    }
+
+    .box-search {
+        position: relative;
+        border-radius: 50%;
+        position: relative;
+        border-radius: 50%;
+        max-width: 300px;
+        width: 100%;
+        margin: auto;
+        margin-top: 5%;
+
+        input {
+            width: 100%;
+            padding-left: 40px;
+            height: 40px;
+            border: none;
+            border-bottom: 1px solid grey;
+            border-radius: 10px;
+        }
+        .search {
+            background-image: url('../../assets/imgs/lupa.png');
+            width: 26px;
+            height: 26px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-color: white;
+            position: absolute;
+            top: 5px;
+            /* padding-left: 20px; */
+            margin-left: 10px;
+        }
+    }
+
+    .informacion-busqueda {
+
+        position: absolute;
+        right: 0;
+        left: 0;
+
+        .contenedor-herramientas {
+            padding: 5px;
+            border-bottom: 1px solid #b0b0b0;
+            border-radius: 4px;
+            margin-bottom: 8px;
+            margin-top: 4px;
+            background-color: #ffffff4f;
+            border-radius: 10px;
+            margin-bottom: 14px;
+
+            .img {
+                width: 100%;
+                height: 100px;
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center center;
+                background-color: white;
+                border-radius: 50%;
+            }
+            .informacion {
+                .nombre {
+                    font-size: 1.5em;
+                    font-weight: 800;
+                }
+
+                p {
+                    margin: 0;
+                    margin-bottom: 3px;
+                    padding:0;
+                }
+                span {
+                    font-size: 1.5em;
+                    color: #005a00;
+                }
+            }
+        }
+    }
+
+    .filtro {
+      background: linear-gradient(0deg, rgba(201,201,169,0.36318277310924374) 0%, rgba(242,181,133,0.6152836134453781) 29%, rgba(217,113,5,1) 100%);
+        background-color: #f18117;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        z-index: 999;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        text-align: center;
+        padding: 15px;
+
+        ul {
+            padding: 0px;
+
+            li {
+                font-size: 1.5em;
+                padding: 10px;
+                margin-bottom: 10px;
+                border-bottom: 2px solid gray;
+                text-decoration: none;
+                list-style-type: none;
+            }
+        }
+
+        select {
+            height: 40px;
+            width: 100%;
+            border-radius: 20px;
+            text-align: center;
+            padding-left: 20px;
+            background: blanchedalmond;
+        }
+    }
+}

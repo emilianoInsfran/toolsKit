@@ -7,13 +7,14 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
-// import { ReputationPage } from '../pages/reputation/reputation';
+import { AlquilerClienteTabsPage } from '../pages/alquilerClienteTabs/alquilerClienteTabs';
+import { AlquilerProveedorTabsPage } from '../pages/alquilerProveedorTabs/alquilerProveedorTabs';
 import { AddQualifyPage } from '../pages/addQualify/addQualify';
 import { UserPage, ModalDomicilio , ModalUsuario, ModalTelefono} from '../pages/user/user';
 import { AltaServicePage } from '../pages/alta-service/alta-service';
 import { HerramientaPage } from '../pages/herramienta/herramienta';
 import { ModalContactoPage } from '../pages/modal-contacto/modal-contacto';
-
+import { EditServicePage } from '../pages/edit-service/edit-service';
 
 import { ResultadosPage } from '../pages/resultados/resultados';
 import { OrderModule } from 'ngx-order-pipe';
@@ -31,6 +32,17 @@ import { AuthenticatorService } from '../providers/authenticatorService';
 import { UtilService } from  '../providers/utilService';
 import { StarRatingModule } from 'ionic3-star-rating';
 
+import { PendienteClientePage } from '../pages/alquilerClienteTabs/pendiente/pendienteCliente';
+import { EnCursoClientePage } from '../pages/alquilerClienteTabs/enCurso/enCursoCliente';
+import { FinalizadoClientePage } from '../pages/alquilerClienteTabs/finalizado/finalizadoCliente';
+
+import { PendienteProveedorPage } from '../pages/alquilerProveedorTabs/pendiente/pendienteProveedor';
+import { EnCursoProveedorPage } from '../pages/alquilerProveedorTabs/enCurso/enCursoProveedor';
+import { FinalizadoProveedorPage } from '../pages/alquilerProveedorTabs/finalizado/finalizadoProveedor';
+
+
+import { MisHerramientasPage } from '../pages/misHerramientas/misHerramientas';
+
 
 @NgModule({
   declarations: [
@@ -46,7 +58,12 @@ import { StarRatingModule } from 'ionic3-star-rating';
     AltaServicePage,
     AddQualifyPage,
     HerramientaPage,
-    ModalContactoPage
+    ModalContactoPage,
+    AlquilerClienteTabsPage,AlquilerProveedorTabsPage,
+    PendienteClientePage,EnCursoClientePage,FinalizadoClientePage,
+    PendienteProveedorPage,EnCursoProveedorPage,FinalizadoProveedorPage,
+    MisHerramientasPage,
+    EditServicePage
   ],
   imports: [
     BrowserModule,
@@ -68,10 +85,14 @@ import { StarRatingModule } from 'ionic3-star-rating';
     ModalUsuario,
     UserPage,
     AltaServicePage,
-    // ReputationPage,
+    AlquilerClienteTabsPage,AlquilerProveedorTabsPage,
     AddQualifyPage,
     HerramientaPage,
-    ModalContactoPage
+    ModalContactoPage,
+    PendienteClientePage,EnCursoClientePage,FinalizadoClientePage,
+    PendienteProveedorPage,EnCursoProveedorPage,FinalizadoProveedorPage,
+    MisHerramientasPage,
+    EditServicePage
   ],
   providers: [
     StatusBar,

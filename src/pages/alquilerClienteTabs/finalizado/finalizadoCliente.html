@@ -1,0 +1,16 @@
+<ion-content class="contenedor" padding >
+  <ion-grid class="informacion-busqueda">
+    <ion-row *ngFor="let item of solicitudes" class="contenedor-herramientas">
+      <ion-col col-4>
+        <div class="img" [ngStyle]="{'background-image': 'url(' + item.herramienta.imagenes[0] + ')'}"> </div>
+      </ion-col>
+      <ion-col col-8 class="informacion">
+        <p class="nombre">{{item.herramienta.nombre}}</p>
+        <p *ngIf="item.herramienta.domicilio" >Ubicación: {{item.herramienta.domicilio.zona}}</p>
+        <p><span>{{item.dias}}</span> Dias </p>
+        <p><span>{{item.cantidad}}</span> Cantidad </p>
+        <p><span>$ {{item.monto}}</span> Total </p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

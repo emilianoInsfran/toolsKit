@@ -7,11 +7,13 @@ import { AltaServicePage } from '../pages/alta-service/alta-service';
 
 import { ResultadosPage } from '../pages/resultados/resultados';
 import { UserPage } from '../pages/user/user';
-// import { ReputationPage } from '../pages/reputation/reputation';
+import { AlquilerProveedorTabsPage } from '../pages/alquilerProveedorTabs/alquilerProveedorTabs';
+import { AlquilerClienteTabsPage } from '../pages/alquilerClienteTabs/alquilerClienteTabs';
 import { Storage } from '@ionic/storage';
 import { UtilService } from  '../providers/utilService';
 import { HttpClient } from '@angular/common/http';
 import { Config } from '../config';
+import { MisHerramientasPage } from '../pages/misHerramientas/misHerramientas';
 
 @Component({
   templateUrl: 'app.html'
@@ -21,6 +23,8 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
   rootPage:any = ResultadosPage;
   pages: Array<{title: string, component: any}>;
+  alquileresPage: Array<{title: string, component: any}>;
+  herramientasPage: Array<{title: string, component: any}>;
 
   firebasePlugin;
 
@@ -36,8 +40,17 @@ export class MyApp {
         { title: 'Home', component: ResultadosPage },
         { title: 'Mi cuenta', component: UserPage },
         { title: 'Publicar', component: AltaServicePage }
-        // { title: 'Reputación', component: ReputationPage }
       ];
+
+      this.alquileresPage = [
+        { title: 'Cliente', component: AlquilerClienteTabsPage },
+        { title: 'Proveedor', component: AlquilerProveedorTabsPage },
+      ];
+
+      this.herramientasPage = [
+        { title: 'Mis Herramientas', component: MisHerramientasPage },
+      ];
+
 
       this.loadFirebase();
     })
@@ -48,8 +61,6 @@ export class MyApp {
 
 
   openPage(page) {
-    // Reset the content nav to have just this page
-    // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
   }
 

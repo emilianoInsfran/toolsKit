@@ -21,6 +21,15 @@ export class Config {
     {id:2, descripcion:"FIJO", longitud:8}
   ];
 
+  public  static ESTADOS = [
+    {id:1, descripcion:"PENDIENTE"},
+    {id:2, descripcion:"APROBADO"},
+    {id:3, descripcion:"RECHAZADO"},
+    {id:4, descripcion:"CANCELADO_CLIENTE"},
+    {id:5, descripcion:"CANCELADO_DUEÑO"},
+    {id:6, descripcion:"FINALIZADO"}
+  ];
+
   public static WEB_CLIENT_ID = '648889677926-5bqvt18lsep5epkha91sdi9tvq38e5go.apps.googleusercontent.com';
   public static heroku_backend_url = 'https://herramientas-backend.herokuapp.com/';
   //public static heroku_backend_url = 'http://localhost:9000/';

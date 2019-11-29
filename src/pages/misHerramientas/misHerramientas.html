@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-navbar >
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Mis Herramientas</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content  class="contenedor">
+  <ion-grid class="informacion-busqueda">
+    <ion-row *ngFor="let item of herramientas" class="contenedor-herramientas" (click)="gotoHerramienta(item)"  [ngClass]="{ 'noDisponible': item.disponible == 0 }">
+      <ion-col col-4>
+        <div class="img" [ngStyle]="{'background-image': 'url(' + item.imagenes[0] + ')'}"> </div>
+      </ion-col>
+      <ion-col col-8 class="informacion">
+        <p class="nombre">{{item.nombre}}</p>
+        <p *ngIf="item.domicilio" >Ubicación: {{item.domicilio.zona}}</p>
+        <p><span>{{item.precio}}</span> por dia</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+  
+

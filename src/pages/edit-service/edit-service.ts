@@ -18,10 +18,10 @@ import { ResultadosPage } from '../resultados/resultados';
 
 @IonicPage()
 @Component({
-  selector: 'page-alta-service',
-  templateUrl: 'alta-service.html',
+  selector: 'page-edit-service',
+  templateUrl: 'edit-service.html',
 })
-export class AltaServicePage {
+export class EditServicePage {
 
   @ViewChild(Slides) slides: Slides;
 
@@ -41,12 +41,13 @@ export class AltaServicePage {
     precio: null,
     imagenes:[],
     cantidad:0,
-    disponible:1,
+    disponible:null,
     domicilio:null,
     tipoHerramienta:null
   }
+  disponible=false;
 
-  hideCustomDomicilioFields = true
+  hideCustomDomicilioFields = false;
 
   domicilio;
   customDomicilio={
@@ -65,11 +66,45 @@ export class AltaServicePage {
 	  private http: HttpClient, 
     private storage: Storage, 
     public util: UtilService) {
+
+      this.init();
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad AltaServicePage');
-    this.loadUsuario();
+
+  init(){
+    this.loadUsuario()
+    .then(usuario=>{
+      this.usuario = usuario;
+    })
+    .then(()=>{
+      this.herramienta = this.navParams.get('herramienta');
+      this.customDomicilio = this.navParams.get('herramienta').domicilio;
+      this.domicilio = "Otro";
+      this.disponible = (this.herramienta.disponible == 1)?true:false;
+      this.imagenes = this.navParams.get('herramienta').imagenes;
+    })
+    .then(()=> this.loadHerramientaForm())
+    .then(()=>{
+      this.herramienta.tipoHerramienta = this.navParams.get('herramienta').tipoHerramienta.id;
+    })
+    .then(()=>this.util.hideLoading());
+  }
+
+  loadUsuario(){
+    return this.storage.get('backend_user');
+  }
+
+  loadDetalleHerramienta(idHerramienta){
+    
+    this.getHerramienta(idHerramienta)
+    .subscribe(herramienta => {
+      this.herramienta = <any>herramienta;
+    });
+  }
+
+
+  getHerramienta(id){
+    return this.http.get(Config.heroku_backend_url+'herramientas/'+id);
   }
   
 
@@ -135,24 +170,8 @@ export class AltaServicePage {
   }
 
 
-  loadUsuario(){
-    this.storage.get('backend_user')
-    .then(usuario => {
-      if(this.util.isEmpty(usuario)){
-        this.navCtrl.setRoot( LoginPage );
-        const toast =this.toastCtrl.create({
-          message:"Debe estar logueado para poder publicar",
-          duration:3000
-        });
-        toast.present();
-      }
-      else{
-        this.usuario = usuario;
-        this.herramienta.usuario = usuario.id
-        this.loadDomicilio();
-      }
-      
-    });
+  loadHerramientaForm(){
+    this.loadDomicilio();
   }
 
   loadDomicilio(){
@@ -186,7 +205,7 @@ export class AltaServicePage {
     this.util.showLoading('Por favor espere');
     this.herramienta.imagenes=[];
     this.imagenes.map(i=>{
-      this.herramienta.imagenes.push(i.url);
+      this.herramienta.imagenes.push(i);
     })
     
     if(!this.validateHerramienta()){
@@ -305,14 +324,14 @@ export class AltaServicePage {
   }
 
   guardarHerramienta(){
-    this.util.showLoading('Publicando...')
+    this.util.showLoading('Actualizando...')
     this.postHerramienta(this.herramienta)
     .subscribe(
       res => {
         this.util.hideLoading();
         this.navCtrl.setRoot( ResultadosPage );
         const toast =this.toastCtrl.create({
-          message:"Herramienta publicada!",
+          message:"Herramienta actualizada!",
           duration:3000
         });
         toast.present();
@@ -320,7 +339,7 @@ export class AltaServicePage {
       err => {
         this.util.hideLoading();
         const toast =this.toastCtrl.create({
-          message:"Se produjo un error al publicar la herramienta",
+          message:"Se produjo un error al actualizar la herramienta",
           duration:3000
         });
         toast.present();
@@ -344,36 +363,41 @@ export class AltaServicePage {
   postHerramienta(herramienta){
     herramienta.precio = parseFloat(herramienta.precio);
     herramienta.cantidad = parseFloat(herramienta.cantidad);
+    herramienta.disponible = (this.herramienta.disponible)?1:0;
     this.setDomicilio();
     
-    return this.http.post(Config.heroku_backend_url+'herramientas', herramienta);
+    return this.http.put(Config.heroku_backend_url+'herramientas/'+herramienta.id, herramienta);
+  }
+
+  onChangeDisponibilidad(event){
+    console.log(event.checked)
+    this.herramienta.disponible = event.checked;
   }
 
   onFileSelectChange(event){
     if(event.target.files != null && event.target.files.length > 0){
       var file = event.target.files[0];
-      if(!this.alreadyExistImage(file.name)){
-        this.util.showLoading('Cargando Imagen..')
-        const formData = new FormData();
-        formData.append('file', file, file.name);
-        this.http.post(Config.heroku_backend_url+'upload/v2', formData).subscribe(
-          res => {
-            this.imagenes.push({ nombre: file.name , url: (<any>res).url});
-            this.imagenesTMP = null;
-            this.util.hideLoading();
-          },
-          err => {
-            console.log("Error occured", err);
-            const toast =this.toastCtrl.create({
-              message:"No se pudo cargar la imagen",
-              duration:3000
-            });
-            toast.present();
-            this.imagenesTMP = null;
-            this.util.hideLoading();
-          }
-        );
-      }
+      this.util.showLoading('Cargando Imagen..')
+      const formData = new FormData();
+      formData.append('file', file, file.name);
+      this.http.post(Config.heroku_backend_url+'upload/v2', formData).subscribe(
+        res => {
+          this.imagenes.push((<any>res).url);
+          this.imagenesTMP = null;
+          this.util.hideLoading();
+        },
+        err => {
+          console.log("Error occured", err);
+          const toast =this.toastCtrl.create({
+            message:"No se pudo cargar la imagen",
+            duration:3000
+          });
+          toast.present();
+          this.imagenesTMP = null;
+          this.util.hideLoading();
+        }
+      );
+      
       
     }
   }
@@ -388,18 +412,13 @@ export class AltaServicePage {
     return exist;
   }
 
-  removeImage(nombre){
-    for( var i = 0; i < this.imagenes.length; i++){ 
-      if ( this.imagenes[i].nombre == nombre) {
-        this.imagenes.splice(i, 1);
-        if(i==0){
-          this.slides.slideTo(0)
-        }else{
-          this.slides.slideTo(i-1);
-        } 
-        break;
-      }
-    }
+  removeImage(i){
+    this.imagenes.splice(i, 1);
+    if(i==0){
+      this.slides.slideTo(0)
+    }else{
+      this.slides.slideTo(i-1);
+    } 
   }
 
   onChangeDomicilio(){

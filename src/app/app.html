@@ -6,11 +6,24 @@
   </ion-header>
 
   <ion-content>
-    <ion-list>
-      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+    <ion-item-group>
+        <ion-item-divider color="light">Principal</ion-item-divider>
+        <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+          {{p.title}}
+        </button>
+      </ion-item-group>
+    <ion-item-group>
+      <ion-item-divider color="light">Alquileres</ion-item-divider>
+      <button menuClose ion-item *ngFor="let p of alquileresPage" (click)="openPage(p)">
         {{p.title}}
       </button>
-    </ion-list>
+    </ion-item-group>
+    <ion-item-group>
+        <ion-item-divider color="light">Herramientas</ion-item-divider>
+        <button menuClose ion-item *ngFor="let p of herramientasPage" (click)="openPage(p)">
+          {{p.title}}
+        </button>
+      </ion-item-group>
   </ion-content>
 
 </ion-menu>
