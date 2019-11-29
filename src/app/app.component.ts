@@ -7,7 +7,7 @@ import { AltaServicePage } from '../pages/alta-service/alta-service';
 
 import { ResultadosPage } from '../pages/resultados/resultados';
 import { UserPage } from '../pages/user/user';
-import { ReputationPage } from '../pages/reputation/reputation';
+// import { ReputationPage } from '../pages/reputation/reputation';
 import { Storage } from '@ionic/storage';
 import { UtilService } from  '../providers/utilService';
 import { HttpClient } from '@angular/common/http';
@@ -35,8 +35,8 @@ export class MyApp {
       this.pages = [
         { title: 'Home', component: ResultadosPage },
         { title: 'Mi cuenta', component: UserPage },
-        { title: 'Publicar', component: AltaServicePage },
-        { title: 'Reputación', component: ReputationPage }
+        { title: 'Publicar', component: AltaServicePage }
+        // { title: 'Reputación', component: ReputationPage }
       ];
 
       this.loadFirebase();

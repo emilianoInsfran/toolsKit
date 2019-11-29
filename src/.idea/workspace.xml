@@ -66,7 +66,7 @@
       <find>./ADD</find>
       <find>Addq</find>
       <find>Addqua</find>
-      <find>ReputationPage</find>
+      <!-- <find>ReputationPage</find> -->
       <find>AddQualifyPage</find>
       <find>item</find>
       <find>ion.row</find>

@@ -7,7 +7,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
-import { ReputationPage } from '../pages/reputation/reputation';
+// import { ReputationPage } from '../pages/reputation/reputation';
 import { AddQualifyPage } from '../pages/addQualify/addQualify';
 import { UserPage, ModalDomicilio , ModalUsuario, ModalTelefono} from '../pages/user/user';
 import { AltaServicePage } from '../pages/alta-service/alta-service';
@@ -44,7 +44,6 @@ import { StarRatingModule } from 'ionic3-star-rating';
     ModalTelefono,
     ModalUsuario,
     AltaServicePage,
-    ReputationPage,
     AddQualifyPage,
     HerramientaPage,
     ModalContactoPage
@@ -69,7 +68,7 @@ import { StarRatingModule } from 'ionic3-star-rating';
     ModalUsuario,
     UserPage,
     AltaServicePage,
-    ReputationPage,
+    // ReputationPage,
     AddQualifyPage,
     HerramientaPage,
     ModalContactoPage
